@@ -6,8 +6,8 @@ syntax match _Paren "?=(" contains=cParen,cCppParen
 syntax match _memberFunc "\.\s*\w\+\s*(\@=" contains=_Operator,_Paren
 
 " colors
-hi _memberFunc guifg=#00FF00 guibg=NONE gui=none
-hi _Operator guifg=#FF0000 guibg=NONE gui=none
+hi _memberFunc guifg=#FF8700 guibg=NONE gui=none
+hi _Operator guifg=#FF8700 guibg=NONE gui=none
 
 " to resolve conflict with comment markers
 syntax region _Comment start="\/\*" end="\*\/"
