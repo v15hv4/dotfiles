@@ -9,6 +9,17 @@ set termguicolors
 se mouse+=v
 map <C-c> "+y<CR>
 
+" Coderunner keybinding scripts
+
+" Press F5 to run C code
+map <F5> :w<CR>:silent !clear<CR><CR>:!gcc -lm % && ./a.out<CR>
+" Press F6 to run C++ code
+map <F6> :w<CR>:silent !clear<CR><CR>:!g++ % && ./a.out<CR>
+" Press F7 to run Java code
+map <F7> :w<CR>:silent !clear<CR><CR>:!javac % && java %:r<CR>
+" Press F8 to run Python code
+map <F8> :w<CR>:silent !clear<CR><CR>:!python %<CR>
+
 colorscheme d4rk
 
 " Autocomplete parentheses
@@ -24,8 +35,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
-
-" highlight Normal ctermbg=black
 
 " Darken line numbers
 highlight LineNr ctermfg=242
