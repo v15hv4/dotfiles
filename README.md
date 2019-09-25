@@ -12,13 +12,13 @@ Comes with coderunner scripts for one-tap code compilation;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F7 for Java  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F8 for Python  
 
-More to come!
-
+More to come!  
+  
 
 ## Installation
 1. Run this script in your terminal: ```wget -O - https://github.com/v15hv4/vimrc/raw/master/install.sh | sh```
 2. ???
 3. Profit!
 
-# Uninstallation
+## Uninstallation
 Run this script in your terminal:  ```wget -O - https://github.com/v15hv4/vimrc/raw/master/uninstall.sh | sh``` 
