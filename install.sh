@@ -1,5 +1,5 @@
 #!/bin/sh
-INSTALL_TO=$HOME
+INSTALL_DIR=$HOME
 
 install_vimrc () {
 	cd ~
@@ -16,13 +16,13 @@ install_vimrc () {
 		mv .vim old.vim
 	fi
 
-	cd "$INSTALL_TO"
+	cd "$INSTALL_DIR"
     git clone git://github.com/v15hv4/vimrc.git wvimrc
 	mv wvimrc/vim ~/.vim
     mv wvimrc/vimrc ~/.vimrc
 	rm -rf wvimrc
 
-    echo "Done!"
+    echo "Installed successfully!"
 }
 
 install_vimrc
