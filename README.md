@@ -5,6 +5,7 @@ Uses a custom-made colorscheme based off Rainglow's 'darkside-contrast' for VSCo
 Hides the trailing tildes and makes line numbers a e s t h e t i c.  
 
 ### Functional: 
+Opens in Insert mode by default.  
 Autocompletes parentheses so you don't have to.  
 Comes with coderunner scripts for one-tap code compilation;  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F5 for C  

@@ -54,3 +54,6 @@ highlight CursorLine cterm=NONE
 " Colorize C operators
 syntax match mySpecialSymbols "+\|-\|\*\|?\|:\|<\|>\|&\||\|!\|\~\|%\|="
 highlight mySpecialSymbols ctermfg=208
+
+" Start Vim in Insert mode
+startinsert
