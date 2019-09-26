@@ -12,9 +12,9 @@ map <C-c> "+y<CR>
 " Coderunner keybinding scripts
 
 " Press F5 to run C code
-map <F5> :w<CR>:silent !clear<CR><CR>:!gcc -lm % && ./a.out<CR>
+map <F5> :w<CR>:silent !clear<CR><CR>:!gcc % -lm && ./a.out<CR>
 " Press F6 to run C++ code
-map <F6> :w<CR>:silent !clear<CR><CR>:!g++ % && ./a.out<CR>
+map <F6> :w<CR>:silent !clear<CR><CR>:!g++ % -lm && ./a.out<CR>
 " Press F7 to run Java code
 map <F7> :w<CR>:silent !clear<CR><CR>:!javac % && java %:r<CR>
 " Press F8 to run Python code
