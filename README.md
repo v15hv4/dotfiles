@@ -22,6 +22,8 @@ More to come!
   
 
 ## Installation
+Make sure you have git installed. If not, run ```sudo apt install git-core```  
+  
 1. Run this script in your terminal: ```wget -O - https://github.com/v15hv4/vimrc/raw/master/install.sh | sh```
 2. ???
 3. Profit!
