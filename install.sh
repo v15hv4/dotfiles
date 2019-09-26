@@ -17,7 +17,7 @@ install_vimrc () {
 	fi
 
 	cd "$INSTALL_DIR"
-    git clone git://github.com/v15hv4/vimrc.git wvimrc
+    git clone https://github.com/v15hv4/vimrc.git wvimrc
 	mv wvimrc/vim ~/.vim
     mv wvimrc/vimrc ~/.vimrc
 	rm -rf wvimrc
