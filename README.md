@@ -10,8 +10,13 @@ Comes with coderunner scripts for one-tap code compilation;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F5 for C  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F6 for C++  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F7 for Java  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F8 for Python  
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F8 for Python.  
+Keyboard shortcuts for clipboard functions;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ctrl-C to Copy  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ctrl-X to Cut Line  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ctrl-P to Paste  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ctrl-Z to Undo  
+  
 More to come!  
   
 

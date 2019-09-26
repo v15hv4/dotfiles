@@ -7,10 +7,14 @@ set showcmd             " show command in bottom bar
 set wildmenu            " visual autocomplete for command menu
 set termguicolors
 se mouse+=v
+
+" Clipboard shortcuts
 map <C-c> "+y<CR>
+map <C-v> "+p<CR>
+map <C-x> dd
+map <C-z> u
 
 " Coderunner keybinding scripts
-
 " Press F5 to run C code
 map <F5> :w<CR>:silent !clear<CR><CR>:!gcc % -lm && ./a.out<CR>
 " Press F6 to run C++ code
