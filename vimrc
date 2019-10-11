@@ -39,9 +39,13 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Raimondi/delimitMate'
 Plug 'vim-airline/vim-airline'
+Plug 'thaerkh/vim-indentguides'
 Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
+
+" Default Airline to molokai
+let g:airline_theme='molokai'
 
 " Darken line numbers
 highlight LineNr ctermfg=242
@@ -57,6 +61,9 @@ highlight CursorLine cterm=NONE
 " Colorize C operators
 syntax match mySpecialSymbols "+\|-\|\*\|?\|:\|<\|>\|&\||\|!\|\~\|%\|="
 highlight mySpecialSymbols ctermfg=208
+
+" Disable dollarsigns at eol
+ 66 set list listchars=
 
 " Start Vim in Insert mode
 startinsert

@@ -1,6 +1,6 @@
 ## What does this do?
 ### UI:
-Adds support for vim-airline, delimitMate, Plug, etc.  
+Adds support for vim-airline, delimitMate, vim-indentguides and Plug.  
 Uses a custom-made colorscheme based off Rainglow's 'darkside-contrast' for VSCode.  
 Hides the trailing tildes and makes line numbers a e s t h e t i c.  
 
