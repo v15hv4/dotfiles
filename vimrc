@@ -63,7 +63,7 @@ syntax match mySpecialSymbols "+\|-\|\*\|?\|:\|<\|>\|&\||\|!\|\~\|%\|="
 highlight mySpecialSymbols ctermfg=208
 
 " Disable dollarsigns at eol
- 66 set list listchars=
+set list listchars=
 
 " Start Vim in Insert mode
 startinsert
