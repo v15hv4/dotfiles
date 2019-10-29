@@ -83,7 +83,7 @@ hi DiffChange guifg=NONE guibg=#c000c0 guisp=#c000c0 gui=NONE ctermfg=NONE cterm
 hi Cursor guifg=#000000 guibg=#EEEEEE guisp=#EEEEEE gui=NONE ctermfg=NONE ctermbg=15 cterm=NONE
 hi SpellLocal guifg=NONE guibg=#008080 guisp=#008080 gui=NONE ctermfg=NONE ctermbg=6 cterm=NONE
 hi Error guifg=#EEEEEE guibg=#c00000 guisp=#c00000 gui=NONE ctermfg=15 ctermbg=1 cterm=NONE
-hi PMenu guifg=#EEEEEE guibg=#0000d7 guisp=#0000d7 gui=bold ctermfg=15 ctermbg=20 cterm=bold
+hi PMenu guifg=#EEEEEE guibg=#0000d7 guisp=#0000d7 gui=bold ctermfg=15 ctermbg=240 cterm=bold
 hi SpecialKey guifg=#808080 guibg=NONE guisp=NONE gui=NONE ctermfg=8 ctermbg=NONE cterm=NONE
 hi Constant guifg=#8e69c9 guibg=NONE guisp=NONE gui=NONE ctermfg=98 ctermbg=NONE cterm=NONE
 hi Tag guifg=#00d700 guibg=NONE guisp=NONE gui=NONE ctermfg=40 ctermbg=NONE cterm=NONE

@@ -41,6 +41,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'vim-airline/vim-airline'
 Plug 'thaerkh/vim-indentguides'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -64,6 +65,20 @@ highlight mySpecialSymbols ctermfg=208
 
 " Disable dollarsigns at eol
 set list listchars=
+
+" Better intellisense suggestions colorscheme
+highlight Pmenu ctermbg=238 guibg=#444444
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
 
 " Start Vim in Insert mode
 startinsert
