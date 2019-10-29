@@ -2,12 +2,10 @@ set background=dark
 syntax enable           " enable syntax processing
 set tabstop=4       " number of visual spaces per TAB
 set shiftwidth=4
-" set softtabstop=4   " number of spaces in tab when editing
 set number              " show line numbers
 set showcmd             " show command in bottom bar
 set wildmenu            " visual autocomplete for command menu
 set termguicolors
-set expandtab
 set cindent
 se mouse+=v
 
@@ -32,7 +30,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Raimondi/delimitMate'
 Plug 'vim-airline/vim-airline'
-Plug 'thaerkh/vim-indentguides'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -56,8 +53,10 @@ highlight CursorLine cterm=NONE
 syntax match mySpecialSymbols "+\|-\|\*\|?\|:\|<\|>\|&\||\|!\|\~\|%\|="
 highlight mySpecialSymbols ctermfg=208
 
-" Disable dollarsigns at eol
-set list listchars=
+" Indentguides using listchars
+:set listchars=tab:\│\ 
+:set list
+:hi SpecialKey ctermfg=236 guifg=grey19
 
 " Better intellisense suggestions colorscheme
 highlight Pmenu ctermbg=238 guibg=#444444
