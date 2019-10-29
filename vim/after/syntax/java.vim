@@ -1,5 +1,5 @@
 " highlight operators
-syntax match _Operator "[-+&|<>=!\/~.,;:*%&^?()\[\]{}]"
+syntax match _Operator "[-+&|<>=!\/~.,;:*%&^?()\[\]]"
 
 " highlight methods
 syntax match _Paren "?=(" contains=cParen,cCppParen
