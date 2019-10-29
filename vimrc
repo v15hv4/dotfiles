@@ -17,15 +17,8 @@ map <C-v> "+p<CR>
 map <C-x> dd
 map <C-z> u
 
-" Coderunner keybinding scripts
-" Press F5 to run C code
-map <F5> :w<CR>:silent !clear<CR><CR>:!gcc % -lm && ./a.out<CR>
-" Press F6 to run C++ code
-map <F6> :w<CR>:silent !clear<CR><CR>:!g++ % -lm && ./a.out<CR>
-" Press F7 to run Java code
-map <F7> :w<CR>:silent !clear<CR><CR>:!javac % && java %:r<CR>
-" Press F8 to run Python code
-map <F8> :w<CR>:silent !clear<CR><CR>:!python %<CR>
+" Press F5 to activate coderunner
+map <F5> :w<CR>:silent !clear <CR>:!. ~/.vim/coderunner.sh %:e %:r<CR>
 
 colorscheme d4rk
 
