@@ -61,6 +61,10 @@ highlight mySpecialSymbols ctermfg=208
 " Better intellisense suggestions colorscheme
 highlight Pmenu ctermbg=238 guibg=#444444
 
+" Enable cursorline
+ set cursorline
+ hi CursorLine guibg=#161616
+
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
