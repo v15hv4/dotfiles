@@ -16,7 +16,7 @@ map <C-x> dd
 map <C-z> u
 
 " Press F5 to activate coderunner
-map <F5> :w<CR>:silent !clear <CR>:!. ~/.vim/coderunner.sh %:e %:r<CR>
+map <F5> :w<CR>:!. ~/.vim/coderunner.sh %:e %:r<CR>
 
 colorscheme d4rk
 

@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 FILE=$2"."$1
-
+clear
 if [ "$1" = "c" ]; then
     gcc $FILE -lm && ./a.out
 elif [ "$1" = "cpp" ]; then
