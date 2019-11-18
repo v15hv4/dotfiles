@@ -24,6 +24,16 @@ colorscheme d4rk
 let g:xptemplate_brace_complete = '([{'
 " enables a DSL (a Domain specific language) for your plugin configurations
 
+" Templates for C, C++ and bash scripts
+if has("autocmd")
+	augroup templates
+		autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh | :2
+		autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c | :7
+		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | :9
+	augroup END
+endif
+
+
 call plug#begin('~/.vim/plugged')
 " inside these 'call lines' you can write 'Plug' instructions
 " that specify each plugin you want to install
