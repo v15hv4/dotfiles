@@ -15,6 +15,12 @@ map <C-v> "+p<CR>
 map <C-x> dd
 map <C-z> u
 
+let mapleader = "`"
+" Use ` to save and exit all buffers
+noremap <leader> :wall<CR>:qall!<CR>
+" Use <F1> to force exit all buffers
+noremap <F1> :qall!<CR>
+
 " Press F5 to activate coderunner
 map <F5> :w<CR>:!. ~/.vim/coderunner.sh %:e %:r<CR>
 
