@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/v15hv4/.vim'
+let g:netrw_dirhist_0='/home/v15hv4/vimrc_new/vim/pack/default/start/gruvbox'
+let g:netrw_dirhist_9='/home/v15hv4/.vim/colors'
+let g:netrw_dirhist_8='/home/v15hv4/.vim/plugged/vim/colors'
+let g:netrw_dirhist_7='/home/v15hv4/.vim/plugged/vim'
+let g:netrw_dirhist_6='/home/v15hv4/.vim/plugged'
+let g:netrw_dirhist_5='/home/v15hv4/.vim'
+let g:netrw_dirhist_4='/home/v15hv4/.vim/colors'
+let g:netrw_dirhist_3='/usr/lib/modprobe.d'
+let g:netrw_dirhist_2='/etc/modprobe.d'
