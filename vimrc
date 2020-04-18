@@ -17,10 +17,11 @@ set guifont=Fira\ Code\ Medium\ Nerd\ Font
 set fillchars=vert:│
 set listchars=tab:\│\ 
 set ttimeoutlen=50
+set foldmethod=marker
 set nocompatible
 set noshowmode
-set list
 set hlsearch
+set list
 
 " Let
 let g:gruvbox_contrast_dark='hard'
@@ -98,7 +99,7 @@ if has("autocmd")
 	augroup templates
 		autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh | :2 | startinsert
 		autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c | :4 | startinsert
-		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | :10 | startinsert
+		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | :7 | startinsert
 	augroup END
 endif
 
