@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-INSTALL_DIR=$HOME
 
 install_dotfiles() {
-	dfiles_list=("vim" "vimrc")
-	cd "$INSTALL_DIR"
+	dfiles_list=("vim" "vimrc" "config/kitty")
 	git clone https://github.com/v15hv4/dotfiles.git vdf_temp --recurse-submodules
+	cd "$HOME"
 	for i in ${!dfiles_list[@]}
 	do
 		dfile=${dfiles_list[$i]}
