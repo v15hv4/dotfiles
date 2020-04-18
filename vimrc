@@ -23,10 +23,11 @@ set list
 set hlsearch
 
 " Let
-let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_dark='hard'
 let g:airline_powerline_fonts = 1
 let g:gruvbox_italic = 1
-let g:airline_theme = 'deus'
+let g:airline_theme='deus'
+let &t_ut=''
 
 " Theme
 colorscheme gruvbox_mod
@@ -38,6 +39,8 @@ noremap <leader> :wall<CR>:qall!<CR>
 noremap <F1> :qall!<CR>
 noremap <F5> :w<CR>:call SendKeys()<CR>
 nmap <C-b> :NERDTreeToggle<CR>
+nmap <C-Left> :tabprevious<CR>
+nmap <C-Right> :tabnext<CR>
 nmap qf  <Plug>(coc-fix-current)
 nmap qd  <Plug>(coc-definition)
 
