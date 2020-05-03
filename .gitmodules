@@ -25,3 +25,6 @@
 [submodule "vim/plugged/vim-floaterm"]
 	path = vim/plugged/vim-floaterm
 	url = https://github.com/voldikss/vim-floaterm
+[submodule "vim/plugged/vimtex"]
+	path = vim/plugged/vimtex
+	url = https://github.com/lervag/vimtex

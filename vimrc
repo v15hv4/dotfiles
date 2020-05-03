@@ -28,6 +28,7 @@ let g:gruvbox_contrast_dark='hard'
 let g:airline_powerline_fonts = 1
 let g:gruvbox_italic = 1
 let g:airline_theme='deus'
+let g:tex_flavor = 'latex'
 let &t_ut=''
 
 " Theme
@@ -68,6 +69,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'voldikss/vim-floaterm'
+Plug 'lervag/vimtex'
 call plug#end()
 
 " Vundle
@@ -100,6 +102,7 @@ if has("autocmd")
 		autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh | :2 | startinsert
 		autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c | :4 | startinsert
 		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | :7 | startinsert
+		autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex | :8 | startinsert
 	augroup END
 endif
 
@@ -111,11 +114,14 @@ endif
 " Run code
 function SendKeys()
 	if expand('%:e') == "c"
-			call floaterm#run('new', "gcc " . expand('%') . " -lm && ./a.out")
-		elseif expand('%:e') == "cpp"
-			call floaterm#run('new', "g++ " . expand('%') . " && ./a.out")
-		elseif expand('%:e') == "py"
-			call floaterm#run('new', "python " . expand('%'))
+		call floaterm#run('new', "gcc " . expand('%') . " -lm && ./a.out")
+	elseif expand('%:e') == "cpp"
+		call floaterm#run('new', "g++ " . expand('%') . " && ./a.out")
+	elseif expand('%:e') == "py"
+		call floaterm#run('new', "python " . expand('%'))
+	elseif expand('%:e') == "tex"
+		call floaterm#run('new', "pdflatex " . expand('%'))
+		:FloatermHide
 	endif
 endfunction
 
