@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 install_dotfiles() {
-	dfiles_list=("vim" "vimrc" "config/kitty")
+	dfiles_list=("vim" "vimrc" "config/kitty" "mozilla")
 	git clone https://github.com/v15hv4/dotfiles.git vdf_temp --recurse-submodules
 	cd "$HOME"
 	for i in ${!dfiles_list[@]}
