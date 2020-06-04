@@ -16,3 +16,7 @@ syn match    cCustomClass    "\w\+\s*::" contains=cCustomScope
 
 hi def link cCustomFunc  Function
 hi def link cCustomClass Function
+
+" Highlight llint and string data types
+syn keyword cType llint
+syn keyword cType string
