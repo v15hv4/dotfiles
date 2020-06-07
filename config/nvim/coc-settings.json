@@ -1,0 +1,18 @@
+{
+	"python.formatting.provider": "black",
+	"python.linting.pylintArgs": ["--load-plugins=pylint_django"],
+	"coc.preferences.formatOnSaveFiletypes": ["python"],
+	"coc.preferences.formatOnType": true,
+	"coc.preferences.hoverTarget": "echo",
+	"signature.target": "echo",
+	"suggest.autoTrigger": "always",
+	"suggest.timeout": 500,
+	"languageserver": {
+		"clangd": {
+			"command": "clangd",
+			"args": ["--background-index"],
+			"rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+			"filetypes": ["c", "cpp", "objc", "objcpp"]
+		}
+	}
+}
