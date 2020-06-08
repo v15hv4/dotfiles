@@ -39,17 +39,25 @@ syntax enable
 
 " Keymaps
 let mapleader="`"
+inoremap jk <Esc>
+nnoremap <C-b> :NERDTreeTabsToggle<CR>
 noremap <leader> :wall<CR>
 noremap <F1> :qall!<CR>
-" noremap <F5> :w<CR>:call SendKeys()<CR>
 noremap qw :call VTerminalOpen()<CR>
 noremap qa :call HTerminalOpen()<CR>
-nmap <C-b> :NERDTreeToggle<CR>
-nmap <C-Left> :tabprevious<CR>
-nmap <C-Right> :tabnext<CR>
+
+" Navigating Splits
+nnoremap <C-Up> <C-W><C-Up>
+nnoremap <C-Down> <C-W><C-Down>
+nnoremap <C-Right> <C-W><C-L>
+nnoremap <C-Left> <C-W><C-H>
+
+" Navigating Tabs
+nnoremap <M-Right> :tabn<CR>
+nnoremap <M-Left> :tabp<CR>
+
 nmap qf  <Plug>(coc-fix-current)
 nmap qd  <Plug>(coc-definition)
-inoremap jk <Esc>
 
 " Floaterm config
 " let g:floaterm_keymap_toggle = '<C-w>'
