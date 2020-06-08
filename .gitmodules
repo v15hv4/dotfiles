@@ -28,3 +28,6 @@
 [submodule "vim/plugged/vimtex"]
 	path = vim/plugged/vimtex
 	url = https://github.com/lervag/vimtex
+[submodule "vim/plugged/split-term.vim"]
+	path = vim/plugged/split-term.vim
+	url = https://github.com/vimlab/split-term.vim

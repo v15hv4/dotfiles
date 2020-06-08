@@ -18,9 +18,11 @@ set fillchars=vert:│
 set listchars=tab:\│\ 
 set ttimeoutlen=50
 set foldmethod=marker
+set clipboard=unnamed
 set nocompatible
 set noshowmode
 set hlsearch
+set nowrap
 set list
 
 " Let
@@ -37,17 +39,20 @@ syntax enable
 
 " Keymaps
 let mapleader="`"
-noremap <leader> :wall<CR>:qall!<CR>
+noremap <leader> :wall<CR>
 noremap <F1> :qall!<CR>
-noremap <F5> :w<CR>:call SendKeys()<CR>
+" noremap <F5> :w<CR>:call SendKeys()<CR>
+noremap qw :call VTerminalOpen()<CR>
+noremap qa :call HTerminalOpen()<CR>
 nmap <C-b> :NERDTreeToggle<CR>
 nmap <C-Left> :tabprevious<CR>
 nmap <C-Right> :tabnext<CR>
 nmap qf  <Plug>(coc-fix-current)
 nmap qd  <Plug>(coc-definition)
+inoremap jk <Esc>
 
 " Floaterm config
-let g:floaterm_keymap_toggle = '<C-w>'
+" let g:floaterm_keymap_toggle = '<C-w>'
 let g:floaterm_width = 0.3
 let g:floaterm_height = 0.8
 let g:floaterm_position = 'topright'
@@ -70,6 +75,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'voldikss/vim-floaterm'
 Plug 'lervag/vimtex'
+Plug 'vimlab/split-term.vim'
 call plug#end()
 
 " Vundle
@@ -78,6 +84,7 @@ filetype off
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'jistr/vim-nerdtree-tabs'
 call vundle#end()
 filetype plugin indent on
 
@@ -87,11 +94,11 @@ function! s:check_back_space() abort
 	return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 inoremap <silent><expr> <Tab>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<Tab>" :
-	\ coc#refresh()
+			\ pumvisible() ? "\<C-n>" :
+			\ <SID>check_back_space() ? "\<Tab>" :
+			\ coc#refresh()
 set updatetime=300
-set shortmess+=c
+	set shortmess+=c
 set nobackup
 set nowritebackup
 set hidden
@@ -101,7 +108,7 @@ if has("autocmd")
 	augroup templates
 		autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh | :2 | startinsert
 		autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c | :4 | startinsert
-		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | :7 | startinsert
+		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | :23 | startinsert
 		autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex | :8 | startinsert
 	augroup END
 endif
@@ -125,3 +132,15 @@ function SendKeys()
 	endif
 endfunction
 
+" Neovim Terminal
+function VTerminalOpen()
+	:40VTerm 
+	:set nonu
+	:set nocursorline
+endfunction
+
+function HTerminalOpen()
+	:Term 
+	:set nonu
+	:set nocursorline
+endfunction
