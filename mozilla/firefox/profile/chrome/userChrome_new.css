@@ -1,0 +1,11 @@
+.tab-line[multiselected], .tab-line[selected="true"] {
+	background-color: #ffffff !important;
+}
+
+scrollbox {
+	margin-left: 10px !important;
+} 
+
+#back-button {
+	margin-left: 5px !important;
+}
