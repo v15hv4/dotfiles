@@ -1,7 +1,11 @@
 {
 	"python.formatting.provider": "black",
+	"python.formatting.blackArgs": ["--line-length=100"],
 	"python.linting.pylintArgs": ["--load-plugins=pylint_django"],
-	"coc.preferences.formatOnSaveFiletypes": ["python"],
+	"prettier.printWidth": 100,
+	"prettier.tabWidth": 4,
+	"prettier.trailingComma": "es5",
+	"coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "javascriptreact", "css", "json"],
 	"coc.preferences.formatOnType": true,
 	"coc.preferences.hoverTarget": "echo",
 	"signature.target": "echo",

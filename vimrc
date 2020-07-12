@@ -33,6 +33,9 @@ let g:airline_theme='deus'
 let g:tex_flavor = 'latex'
 let &t_ut=''
 
+" Commands
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " Theme
 colorscheme gruvbox_mod
 syntax enable
@@ -84,6 +87,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'voldikss/vim-floaterm'
 Plug 'lervag/vimtex'
 Plug 'vimlab/split-term.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 " Vundle

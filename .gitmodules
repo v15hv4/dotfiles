@@ -31,3 +31,9 @@
 [submodule "vim/plugged/split-term.vim"]
 	path = vim/plugged/split-term.vim
 	url = https://github.com/vimlab/split-term.vim
+[submodule "vim/plugged/vim-javascript"]
+	path = vim/plugged/vim-javascript
+	url = https://github.com/pangloss/vim-javascript
+[submodule "vim/plugged/vim-jsx-pretty"]
+	path = vim/plugged/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty
