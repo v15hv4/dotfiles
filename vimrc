@@ -63,7 +63,6 @@ nmap qf  <Plug>(coc-fix-current)
 nmap qd  <Plug>(coc-definition)
 
 " Floaterm config
-" let g:floaterm_keymap_toggle = '<C-w>'
 let g:floaterm_width = 0.3
 let g:floaterm_height = 0.8
 let g:floaterm_position = 'topright'
@@ -73,7 +72,7 @@ let g:floaterm_wintitle = v:false
 highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=#161616 guifg=NONE
 highlight VertSplit cterm=NONE ctermfg=White ctermbg=NONE
 highlight CursorLineNr guifg=white ctermfg=15 cterm=bold
-highlight SpecialKey ctermfg=238 guifg=grey27
+highlight Whitespace ctermfg=236 guifg=grey19
 highlight Pmenu ctermbg=238 guibg=#444444
 highlight LineNr ctermfg=242
 
@@ -89,6 +88,7 @@ Plug 'lervag/vimtex'
 Plug 'vimlab/split-term.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 " Vundle

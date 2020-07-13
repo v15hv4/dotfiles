@@ -1,22 +1,36 @@
 {
-	"python.formatting.provider": "black",
-	"python.formatting.blackArgs": ["--line-length=100"],
-	"python.linting.pylintArgs": ["--load-plugins=pylint_django"],
-	"prettier.printWidth": 100,
-	"prettier.tabWidth": 4,
-	"prettier.trailingComma": "es5",
-	"coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "javascriptreact", "css", "json"],
-	"coc.preferences.formatOnType": true,
-	"coc.preferences.hoverTarget": "echo",
-	"signature.target": "echo",
-	"suggest.autoTrigger": "always",
-	"suggest.timeout": 500,
-	"languageserver": {
-		"clangd": {
-			"command": "clangd",
-			"args": ["--background-index"],
-			"rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-			"filetypes": ["c", "cpp", "objc", "objcpp"]
-		}
-	}
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length=100"],
+    "python.linting.pylintArgs": ["--load-plugins=pylint_django"],
+    "prettier.printWidth": 100,
+    "prettier.tabWidth": 4,
+    "prettier.trailingComma": "es5",
+    "prettier.statusItemText": "P",
+    "eslint.run": "onSave",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "python",
+        "javascript",
+        "javascriptreact",
+        "css",
+        "json"
+    ],
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.hoverTarget": "echo",
+    "signature.target": "echo",
+    "suggest.autoTrigger": "always",
+    "suggest.timeout": 500,
+    "languageserver": {
+        "clangd": {
+            "command": "clangd",
+            "args": ["--background-index"],
+            "rootPatterns": [
+                "compile_flags.txt",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "filetypes": ["c", "cpp", "objc", "objcpp"]
+        }
+    }
 }
