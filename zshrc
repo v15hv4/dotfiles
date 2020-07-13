@@ -103,3 +103,10 @@ source $HOME/.zsh_aliases
 setopt PROMPT_CR
 setopt PROMPT_SP
 export PROMPT_EOL_MARK=""
+
+unsetopt nomatch
+
+eval "$(pyenv init -)"
+
+# Tmux session aliases
+alias 3mux="tmux new-session \"nvim\" \; split-window -h \; split-window -v \; resize-pane -R 50 \; select-pane -t 0 \; attach"
