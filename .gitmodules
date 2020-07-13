@@ -40,3 +40,6 @@
 [submodule "vim/plugged/vim-commentary"]
 	path = vim/plugged/vim-commentary
 	url = https://github.com/tpope/vim-commentary
+[submodule "vim/plugged/vim-gitgutter"]
+	path = vim/plugged/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter

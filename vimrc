@@ -26,6 +26,9 @@ set nowrap
 set list
 
 " Let
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_enabled = 1
+let g:gitgutter_map_keys = 0
 let g:gruvbox_contrast_dark='hard'
 let g:airline_powerline_fonts = 1
 let g:gruvbox_italic = 1
@@ -89,6 +92,7 @@ Plug 'vimlab/split-term.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " Vundle
@@ -157,3 +161,10 @@ function HTerminalOpen()
 	:set nonu
 	:set nocursorline
 endfunction
+
+" Git
+hi clear SignColumn
+hi link GitGutterAdd GruvboxOrange
+hi link GitGutterChange GruvboxBlue
+hi link GitGutterChangeDeleteLine GruvboxYellow
+hi GitGutterDelete ctermfg=203 guifg=#ff5f5f
