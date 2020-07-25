@@ -1,8 +1,9 @@
 " Set
 set background=dark
 set encoding=utf8
-set tabstop=4
-set shiftwidth=4
+" set tabstop=4
+" set shiftwidth=4
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set number
 set showcmd
 set wildmenu
@@ -24,6 +25,7 @@ set noshowmode
 set hlsearch
 set nowrap
 set list
+set ttimeoutlen=100
 
 " Let
 let g:gitgutter_override_sign_column_highlight = 0
@@ -48,7 +50,8 @@ let mapleader="`"
 inoremap jk <Esc>
 nnoremap <C-b> :NERDTreeTabsToggle<CR>
 noremap <leader> :wall<CR>
-noremap <F1> :qall!<CR>
+nmap <F1> :qall!<CR>
+nmap <F5> :call RunCode()<CR>
 noremap qw :call VTerminalOpen()<CR>
 noremap qa :call HTerminalOpen()<CR>
 
@@ -65,12 +68,6 @@ nnoremap <M-Left> :tabp<CR>
 nmap qf  <Plug>(coc-fix-current)
 nmap qd  <Plug>(coc-definition)
 
-" Floaterm config
-let g:floaterm_width = 0.3
-let g:floaterm_height = 0.8
-let g:floaterm_position = 'topright'
-let g:floaterm_wintitle = v:false
-
 " Highlights
 highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=#161616 guifg=NONE
 highlight VertSplit cterm=NONE ctermfg=White ctermbg=NONE
@@ -86,13 +83,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
-Plug 'voldikss/vim-floaterm'
 Plug 'lervag/vimtex'
 Plug 'vimlab/split-term.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 " Vundle
@@ -102,64 +99,72 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'alvan/vim-closetag'
+Plugin 'easymotion/vim-easymotion'
 call vundle#end()
 filetype plugin indent on
 
 " CoC-configs
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 inoremap <silent><expr> <Tab>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<Tab>" :
-			\ coc#refresh()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<Tab>" :
+            \ coc#refresh()
 set updatetime=300
-	set shortmess+=c
+set shortmess+=c
 set nobackup
 set nowritebackup
 set hidden
 
 " Skeletons
 if has("autocmd")
-	augroup templates
-		autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh | :2 | startinsert
-		autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c | :4 | startinsert
-		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | :23 | startinsert
-		autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex | :8 | startinsert
-	augroup END
+    augroup templates
+        autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh | :2 | startinsert
+        autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c | :4 | startinsert
+        autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | :8 | startinsert
+        autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex | :8 | startinsert
+    augroup END
 endif
 
 " Remember cursor position
 if has("autocmd")
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 " Run code
-function SendKeys()
-	if expand('%:e') == "c"
-		call floaterm#run('new', "gcc " . expand('%') . " -lm && ./a.out")
-	elseif expand('%:e') == "cpp"
-		call floaterm#run('new', "g++ " . expand('%') . " && ./a.out")
-	elseif expand('%:e') == "py"
-		call floaterm#run('new', "python " . expand('%'))
-	elseif expand('%:e') == "tex"
-		call floaterm#run('new', "pdflatex " . expand('%'))
-		:FloatermHide
-	endif
+function RunCode()
+    split
+    let l:ext = expand('%:e')
+
+    if ext == "c"
+        terminal gcc % -lm && ./a.out
+    elseif ext == "cpp"
+        terminal g++ % && ./a.out
+    elseif ext == "py"
+        terminal python %
+    elseif ext == "tex"
+        terminal pdflatex %
+    endif
+
+    set nonu
+    set cursorline
+    startinsert
 endfunction
 
 " Neovim Terminal
 function VTerminalOpen()
-	:40VTerm 
-	:set nonu
-	:set nocursorline
+    40VTerm 
+    set nonu
+    set nocursorline
 endfunction
 
 function HTerminalOpen()
-	:Term 
-	:set nonu
-	:set nocursorline
+    Term 
+    set nonu
+    set nocursorline
 endfunction
 
 " Git
@@ -168,3 +173,6 @@ hi link GitGutterAdd GruvboxOrange
 hi link GitGutterChange GruvboxBlue
 hi link GitGutterChangeDeleteLine GruvboxYellow
 hi GitGutterDelete ctermfg=203 guifg=#ff5f5f
+
+" AutoClose Tags
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.js"
