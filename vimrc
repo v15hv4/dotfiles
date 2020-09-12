@@ -40,6 +40,7 @@ let &t_ut=''
 
 " Commands
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+autocmd BufWritePost * call CompileOnSave() 
 
 " Theme
 colorscheme gruvbox_mod
@@ -54,6 +55,8 @@ nmap <F1> :qall!<CR>
 nmap <F5> :call RunCode()<CR>
 noremap qw :call VTerminalOpen()<CR>
 noremap qa :call HTerminalOpen()<CR>
+map , <Plug>(easymotion-prefix)
+map / :BLines<CR>
 
 " Navigating Splits
 nnoremap <C-Up> <C-W><C-Up>
@@ -90,6 +93,8 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
 " Vundle
@@ -136,22 +141,29 @@ endif
 
 " Run code
 function RunCode()
-    split
     let l:ext = expand('%:e')
+    
+    " Jobs that run on an external app
+    if ext == "tex"
+        call jobstart('zathura '.expand('%:r').'.pdf')
+    else
+        " Jobs that run on a vim terminal buffer
+        split
 
-    if ext == "c"
-        terminal gcc % -lm && ./a.out
-    elseif ext == "cpp"
-        terminal g++ % && ./a.out
-    elseif ext == "py"
-        terminal python %
-    elseif ext == "tex"
-        terminal pdflatex %
+        if ext == "c"
+            terminal gcc % -lm && ./a.out
+        elseif ext == "cpp"
+            terminal g++ % && ./a.out
+        elseif ext == "py"
+            terminal python %
+        elseif ext == "m"
+            terminal octave %
+        endif
+
+        set nonu
+        set cursorline
+        startinsert
     endif
-
-    set nonu
-    set cursorline
-    startinsert
 endfunction
 
 " Neovim Terminal
@@ -176,3 +188,17 @@ hi GitGutterDelete ctermfg=203 guifg=#ff5f5f
 
 " AutoClose Tags
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.js"
+
+" Auto-compile on save
+function CompileOnSave()
+    if expand('%:e') == "scss"
+       silent !sass % %:r.css
+    elseif expand('%:e') == "tex"
+        silent !pdflatex %
+    endif
+endfunction
+
+" Format JSONs
+function FormatJSON()
+    %!python -m json.tool
+endfunction
