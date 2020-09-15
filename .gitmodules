@@ -43,3 +43,6 @@
 [submodule "vim/plugged/vim-gitgutter"]
 	path = vim/plugged/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule "vim/plugged/python-syntax"]
+	path = vim/plugged/python-syntax
+	url = https://github.com/vim-python/python-syntax

@@ -28,6 +28,7 @@ set list
 set ttimeoutlen=100
 
 " Let
+let g:python_highlight_all = 1
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_enabled = 1
 let g:gitgutter_map_keys = 0
@@ -89,6 +90,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'lervag/vimtex'
 Plug 'vimlab/split-term.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'vim-python/python-syntax'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
