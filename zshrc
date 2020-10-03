@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/texlive/2020/bin/x86_64-linux:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/v15hv4/.oh-my-zsh"
@@ -109,4 +110,21 @@ unsetopt nomatch
 eval "$(pyenv init -)"
 
 # Tmux session aliases
+alias 2mux="tmux new-session \"nvim\" \; split-window -h \; resize-pane -R 50 \; select-pane -t 0 \; attach"
 alias 3mux="tmux new-session \"nvim\" \; split-window -h \; split-window -v \; resize-pane -R 50 \; select-pane -t 0 \; attach"
+
+# Auto source .envs
+function cd() {
+    builtin cd "$@"
+
+    if [[ -z "$VIRTUAL_ENV" ]] ; then
+        if [[ -d ./.env ]] ; then
+            source ./.env/bin/activate
+        fi
+    else
+        parentdir="$(dirname "$VIRTUAL_ENV")"
+        if [[ "$PWD"/ != "$parentdir"/* ]] ; then
+            deactivate
+        fi
+    fi
+}
