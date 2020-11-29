@@ -1,0 +1,5 @@
+split-window -h
+resize-pane -R 50
+select-pane -t 0
+send "nvim"
+send-keys Enter
