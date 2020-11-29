@@ -81,14 +81,18 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+# Autostart tmux
+# [[ $- != *i* ]] && return
+# [[ -z "$TMUX" ]] && exec tmux
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -110,21 +114,31 @@ unsetopt nomatch
 eval "$(pyenv init -)"
 
 # Tmux session aliases
-alias 2mux="tmux new-session \"nvim\" \; split-window -h \; resize-pane -R 50 \; select-pane -t 0 \; attach"
-alias 3mux="tmux new-session \"nvim\" \; split-window -h \; split-window -v \; resize-pane -R 50 \; select-pane -t 0 \; attach"
+# alias 2mux="tmux new-session \"nvim\" \; split-window -h \; resize-pane -R 50 \; select-pane -t 0 \; attach"
+# alias 3mux="tmux new-session \"nvim\" \; split-window -h \; split-window -v \; resize-pane -R 50 \; select-pane -t 0 \; attach"
+alias 2mux="tmux source-file ~/scripts/tmux/2-pane"
+alias 3mux="tmux source-file ~/scripts/tmux/3-pane"
+
+# Setup Tmux dev workspace
+alias dev="tmux source-file .tmuxrc"
 
 # Auto source .envs
 function cd() {
-    builtin cd "$@"
+  builtin cd "$@"
 
-    if [[ -z "$VIRTUAL_ENV" ]] ; then
-        if [[ -d ./.env ]] ; then
-            source ./.env/bin/activate
-        fi
-    else
-        parentdir="$(dirname "$VIRTUAL_ENV")"
-        if [[ "$PWD"/ != "$parentdir"/* ]] ; then
-            deactivate
-        fi
-    fi
+  if [[ -z "$VIRTUAL_ENV" ]] ; then
+    ## If env folder is found then activate the vitualenv
+      if [[ -d ./.env ]] ; then
+        source ./.env/bin/activate
+      fi
+  else
+    ## check the current folder belong to earlier VIRTUAL_ENV folder
+    # if yes then do nothing
+    # else deactivate
+      parentdir="$(dirname "$VIRTUAL_ENV")"
+      if [[ "$PWD"/ != "$parentdir"/* ]] ; then
+        deactivate
+      fi
+  fi
 }
+
