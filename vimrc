@@ -1,8 +1,6 @@
 " Set
 set background=dark
 set encoding=utf8
-" set tabstop=4
-" set shiftwidth=4
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set number
 set showcmd
@@ -26,6 +24,7 @@ set hlsearch
 set nowrap
 set list
 set ttimeoutlen=100
+set autoread
 
 " Let
 let g:python_highlight_all = 1
@@ -56,8 +55,6 @@ nmap <F1> :qall!<CR>
 nmap <F5> :call RunCode()<CR>
 noremap qw :call VTerminalOpen()<CR>
 noremap qa :call HTerminalOpen()<CR>
-map , <Plug>(easymotion-prefix)
-map / :BLines<CR>
 
 " Navigating Splits
 nnoremap <C-Up> <C-W><C-Up>
@@ -95,8 +92,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()
 
 " Vundle
@@ -107,7 +103,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'alvan/vim-closetag'
-Plugin 'easymotion/vim-easymotion'
 call vundle#end()
 filetype plugin indent on
 
@@ -148,6 +143,8 @@ function RunCode()
     " Jobs that run on an external app
     if ext == "tex"
         call jobstart('zathura '.expand('%:r').'.pdf')
+    elseif ext == "md"
+        MarkdownPreview
     else
         " Jobs that run on a vim terminal buffer
         split
@@ -160,6 +157,8 @@ function RunCode()
             terminal python %
         elseif ext == "m"
             terminal octave %
+        elseif ext == "js"
+            terminal node %
         endif
 
         set nonu
@@ -204,3 +203,6 @@ endfunction
 function FormatJSON()
     %!python -m json.tool
 endfunction
+
+" Markdown Preview config
+let g:mkdp_browser = 'surf'
