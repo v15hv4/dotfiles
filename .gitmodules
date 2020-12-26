@@ -46,3 +46,6 @@
 [submodule "vim/plugged/python-syntax"]
 	path = vim/plugged/python-syntax
 	url = https://github.com/vim-python/python-syntax
+[submodule "vim/plugged/vim-go"]
+	path = vim/plugged/vim-go
+	url = https://github.com/fatih/vim-go

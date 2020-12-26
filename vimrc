@@ -1,7 +1,7 @@
 " Set
 set background=dark
 set encoding=utf8
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set number
 set showcmd
 set wildmenu
@@ -36,6 +36,11 @@ let g:airline_powerline_fonts = 1
 let g:gruvbox_italic = 1
 let g:airline_theme='deus'
 let g:tex_flavor = 'latex'
+let g:go_highlight_structs = 1 
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 let &t_ut=''
 
 " Commands
@@ -93,6 +98,7 @@ Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 " Vundle
@@ -159,6 +165,8 @@ function RunCode()
             terminal octave %
         elseif ext == "js"
             terminal node %
+        elseif ext == "go"
+            terminal go run %
         endif
 
         set nonu
