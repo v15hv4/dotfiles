@@ -57,7 +57,7 @@ inoremap jk <Esc>
 nnoremap <C-b> :NERDTreeTabsToggle<CR>
 noremap <leader> :wall<CR>
 nmap <F1> :qall!<CR>
-nmap <F5> :call RunCode()<CR>
+nmap <F5> :w <CR> :call RunCode()<CR>
 noremap qw :call VTerminalOpen()<CR>
 noremap qa :call HTerminalOpen()<CR>
 
@@ -214,3 +214,17 @@ endfunction
 
 " Markdown Preview config
 let g:mkdp_browser = 'surf'
+
+" coc-snippets config
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'

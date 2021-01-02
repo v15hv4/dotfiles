@@ -1,4 +1,16 @@
 {
+    "eslint.run": "onSave",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "python",
+        "javascript",
+        "javascriptreact",
+        "css",
+        "json",
+        "scss",
+        "sass"
+    ],
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.hoverTarget": "echo",
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": ["--line-length=100"],
     "python.linting.pylintArgs": ["--load-plugins=pylint_django"],
@@ -6,19 +18,10 @@
     "prettier.tabWidth": 4,
     "prettier.trailingComma": "es5",
     "prettier.statusItemText": "P",
-    "eslint.run": "onSave",
-    "coc.preferences.formatOnSaveFiletypes": [
-        "python",
-        "javascript",
-        "javascriptreact",
-        "css",
-        "json"
-    ],
-    "coc.preferences.formatOnType": true,
-    "coc.preferences.hoverTarget": "echo",
     "signature.target": "echo",
     "suggest.autoTrigger": "always",
     "suggest.timeout": 500,
+    "snippets.userSnippetsDirectory": "$HOME/.config/nvim/snips",
     "languageserver": {
         "clangd": {
             "command": "clangd",

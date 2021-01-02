@@ -1,0 +1,21 @@
+snippet rhc "react component skeleton" b
+import React, { useState } from "react";
+
+const ${1:`!p snip.rv = snip.basename`} = ($2) => {
+	$0
+	return null;
+};
+
+export default ${1:`!p snip.rv = snip.basename`};
+endsnippet
+
+snippet hc "react component skeleton (with JSX transform)" b
+import { useState } from "react";
+
+const ${1:`!p snip.rv = snip.basename`} = ($2) => {
+	$0
+	return null;
+};
+
+export default $1;
+endsnippet
