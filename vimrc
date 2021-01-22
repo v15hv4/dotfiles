@@ -25,6 +25,8 @@ set nowrap
 set list
 set ttimeoutlen=100
 set autoread
+set exrc
+set secure
 
 " Let
 let g:python_highlight_all = 1
