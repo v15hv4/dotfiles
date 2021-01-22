@@ -49,3 +49,6 @@
 [submodule "vim/plugged/vim-go"]
 	path = vim/plugged/vim-go
 	url = https://github.com/fatih/vim-go
+[submodule "vim/plugged/dart-vim-plugin"]
+	path = vim/plugged/dart-vim-plugin
+	url = https://github.com/dart-lang/dart-vim-plugin

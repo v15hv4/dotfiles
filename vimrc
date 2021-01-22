@@ -57,7 +57,7 @@ inoremap jk <Esc>
 nnoremap <C-b> :NERDTreeTabsToggle<CR>
 noremap <leader> :wall<CR>
 nmap <F1> :qall!<CR>
-nmap <F5> :w <CR> :call RunCode()<CR>
+nmap <F5> :call RunCode()<CR>
 noremap qw :call VTerminalOpen()<CR>
 noremap qa :call HTerminalOpen()<CR>
 
@@ -98,7 +98,7 @@ Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'dart-lang/dart-vim-plugin'
 call plug#end()
 
 " Vundle
@@ -167,6 +167,8 @@ function RunCode()
             terminal node %
         elseif ext == "go"
             terminal go run %
+        elseif ext == "dart"
+            terminal dart %
         endif
 
         set nonu
@@ -200,9 +202,9 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.js"
 
 " Auto-compile on save
 function CompileOnSave()
-    if expand('%:e') == "scss"
-       silent !sass % %:r.css
-    elseif expand('%:e') == "tex"
+    " if expand('%:e') == "scss"
+    "    silent !sass % %:r.css
+    if expand('%:e') == "tex"
         silent !pdflatex %
     endif
 endfunction
