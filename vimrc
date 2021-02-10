@@ -132,10 +132,10 @@ set hidden
 " Skeletons
 if has("autocmd")
     augroup templates
-        autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh | :2 | startinsert
-        autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c | :4 | startinsert
-        autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | :8 | startinsert
-        autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex | :8 | startinsert
+        autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh | :2
+        autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c | :4
+        autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | :8
+        autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex | :8
     augroup END
 endif
 
