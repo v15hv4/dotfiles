@@ -1,3 +1,21 @@
+
+"         ________ ++     ________
+"        /VVVVVVVV\++++  /VVVVVVVV\
+"        \VVVVVVVV/++++++\VVVVVVVV/
+"         |VVVVVV|++++++++/VVVVV/'
+"         |VVVVVV|++++++/VVVVV/'
+"        +|VVVVVV|++++/VVVVV/'+
+"      +++|VVVVVV|++/VVVVV/'+++++
+"    +++++|VVVVVV|/VVVVV/'+++++++++
+"      +++|VVVVVVVVVVV/'+++++++++
+"        +|VVVVVVVVV/'+++++++++
+"         |VVVVVVV/'+++++++++
+"         |VVVVV/'+++++++++
+"         |VVV/'+++++++++
+"         'V/'   ++++++
+"                  ++
+
+
 " --------------- GENERAL ---------------- "
 " reload files changed outside of Vim not currently modified in Vim (needs below)
 set autoread
@@ -86,6 +104,43 @@ highlight CursorLineNr guifg=white ctermfg=15 cterm=bold
 highlight Whitespace ctermfg=236 guifg=grey19
 highlight Pmenu ctermbg=238 guibg=#444444
 highlight LineNr ctermfg=242
+
+
+" ---------------- PLUG ----------------- "
+call plug#begin('~/.vim/plugged')
+" general purpose
+Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
+
+" nerdtree & co
+Plug 'preservim/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" syntax highlighting
+Plug 'pangloss/vim-javascript'
+Plug 'vim-python/python-syntax'
+Plug 'maxmellon/vim-jsx-pretty'
+call plug#end()
+
+
+" -------------- NERDTREE --------------- "
+nnoremap <C-b> :NERDTreeTabsToggle<CR>
+
+
+" -------------- GITGUTTER -------------- "
+" basic config
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_enabled = 1
+let g:gitgutter_map_keys = 0
+
+" color tweaks
+hi clear SignColumn
+hi link GitGutterAdd GruvboxOrange
+hi link GitGutterChange GruvboxBlue
+hi link GitGutterChangeDeleteLine GruvboxYellow
+hi GitGutterDelete ctermfg=203 guifg=#ff5f5f
 
 
 " ---------------- MISC ----------------- "
