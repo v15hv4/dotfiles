@@ -24,7 +24,7 @@ super + shift + r
 
 # close and kill
 super + {_,shift + }q
-	bspc node -{c,k}
+	bspc node -{c,c}
 
 # alternate between the tiled and monocle layout
 super + m
@@ -93,11 +93,11 @@ super + alt + {Left,Down,Up,Right}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio
-super + ctrl + {1-9}
+super + alt + {1-9}
 	bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
-super + ctrl + space
+super + alt + space
 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
@@ -137,3 +137,7 @@ XF86Audio{RaiseVolume,LowerVolume}
 
 XF86Audio{Mute}
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# screenshots
+Print
+	flameshot gui

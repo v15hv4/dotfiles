@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/v15hv4/.config/kitty'
+let g:netrw_dirhist_8='/home/v15hv4/.vim'
 let g:netrw_dirhist_7='/home/v15hv4/.config/polybar/material'
 let g:netrw_dirhist_6='/home/v15hv4/.config/polybar'
 let g:netrw_dirhist_5='/home/v15hv4/.config/bspwm'
