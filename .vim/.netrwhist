@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/v15hv4/.config/polybar/material'
+let g:netrw_dirhist_6='/home/v15hv4/.config/polybar'
+let g:netrw_dirhist_5='/home/v15hv4/.config/bspwm'
+let g:netrw_dirhist_4='/home/v15hv4/.config/sxhkd'
+let g:netrw_dirhist_3='/home/v15hv4/.config/kitty'
+let g:netrw_dirhist_2='/home/v15hv4/.config/bspwm'
+let g:netrw_dirhist_1='/home/v15hv4/.config/sxhkd'
