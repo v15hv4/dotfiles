@@ -141,3 +141,7 @@ XF86Audio{Mute}
 # screenshots
 Print
 	flameshot gui
+
+# lock screen using slock
+super + l
+    slock
