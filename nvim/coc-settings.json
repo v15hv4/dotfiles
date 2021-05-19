@@ -1,0 +1,23 @@
+{
+    "eslint.run": "onSave",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "python",
+        "javascript",
+        "javascriptreact",
+        "css",
+        "json",
+        "scss",
+        "sass",
+        "dart"
+    ],
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.hoverTarget": "echo",
+    "prettier.printWidth": 100,
+    "prettier.tabWidth": 4,
+    "prettier.trailingComma": "es5",
+    "prettier.statusItemText": "P",
+    "signature.target": "echo",
+    "suggest.autoTrigger": "always",
+    "suggest.timeout": 500,
+    "snippets.userSnippetsDirectory": "$HOME/.config/nvim/snips"
+}
