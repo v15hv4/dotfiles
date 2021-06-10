@@ -68,6 +68,9 @@ set startofline
 " don't show current mode on commandbar
 set noshowmode
 
+" faster updatetime
+set updatetime=750
+
 " ---------------- KEYS ----------------- "
 " use ` as Leader
 let mapleader="`"
@@ -110,7 +113,7 @@ highlight CursorLineNr guifg=white ctermfg=15 cterm=bold
 highlight Whitespace ctermfg=236 guifg=grey19
 highlight Pmenu ctermbg=238 guibg=#444444
 highlight StatusLine ctermfg=233 guifg=#121212
-highlight StatusLineNC ctermfg=233 guifg=#121212
+highlight StatusLineNC ctermfg=235 guifg=#262626
 highlight LineNr ctermfg=242
 
 
@@ -305,7 +308,7 @@ local config = {
       -- we are going to use lualine_c an lualine_x as left and
       -- right section. Both are highlighted by c theme .  So we
       -- are just setting default looks o statusline
-      normal = {c = {fg = colors.magenta, bg = colors.bg}},
+      normal = {c = {fg = colors.fg, bg = colors.bg}},
       inactive = {c = {fg = colors.fg, bg = colors.bg}}
     }
   },
@@ -316,7 +319,7 @@ local config = {
     lualine_y = {},
     lualine_z = {},
     lualine_c = {},
-    lualine_x = {'filetype'}
+    lualine_x = {}
   },
   inactive_sections = {
     -- these are to remove the defaults
@@ -432,6 +435,16 @@ ins_right {
 }
 
 ins_right {
+  'location',
+  color = {fg = colors.fg, gui = 'bold'}
+}
+
+ins_right {
+  'filetype',
+  color = {fg = colors.magenta, gui = 'bold'}
+}
+
+ins_right {
   right_padding = 1
 }
 
@@ -447,3 +460,20 @@ endif
 
 " start netrw in tree liststyle
 let g:netrw_liststyle = 3
+
+" auto limit linewidth in .md files
+au BufRead,BufNewFile *.md setlocal textwidth=75
+
+" toggle line wrapping
+let g:wrapping_on = 0
+function ToggleWrap()
+    if g:wrapping_on == 1
+        let g:wrapping_on = 0
+        echo "wrapping off"
+    else
+        let g:wrapping_on = 1
+        echo "wrapping on"
+    endif
+endfunction
+command ToggleWrap :call ToggleWrap()
+command TW ToggleWrap

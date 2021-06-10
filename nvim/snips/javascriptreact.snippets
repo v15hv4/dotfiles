@@ -1,0 +1,39 @@
+snippet rhc "react component skeleton" b
+import React from "react";
+
+const ${1:`!p snip.rv = snip.basename`} = ($2) => {
+	$0
+	return null;
+};
+
+export default ${1:`!p snip.rv = snip.basename`};
+endsnippet
+
+snippet hc "react component skeleton (with JSX transform)" b
+const ${1:`!p snip.rv = snip.basename`} = ($2) => {
+	$0
+	return null;
+};
+
+export default $1;
+endsnippet
+
+snippet im "import" b
+import { $2 } from "$1";
+endsnippet
+
+snippet imd "import default" b
+import $2 from "$1";
+endsnippet
+
+snippet ust "useState" b
+const [$1, set${2:`!p snip.rv = t[1]`}] = useState(${3:null});
+endsnippet
+
+snippet uef "useEffect" b
+useEffect(() => $1, [$2]);
+endsnippet
+
+snippet ure "useRef" b
+const $1 = useRef({});
+endsnippet
