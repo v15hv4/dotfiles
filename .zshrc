@@ -77,7 +77,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux git zsh-autosuggestions)
+plugins=(archlinux git zsh-autosuggestions autoenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,8 +106,10 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
 source $HOME/.zsh_aliases
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Match wildcards
+setopt nonomatch
