@@ -7,4 +7,22 @@ alias minecraft="java -jar /mnt/ext/minecraft_linux/TLauncher-2.75.jar && exit"
 # jupyterlab
 JUPYTERENVPATH="$HOME/jupyterlab/.venv"
 CHROMEPATH="/opt/google/chrome/google-chrome"
-alias jl='f(){ if [[ $(ps -x | grep "[j]upyterlab") ]]; then; $CHROMEPATH --app=http://localhost:8888/lab; else; $JUPYTERENVPATH/bin/python -m jupyterlab --browser="$CHROMEPATH --app=%s" </dev/null &>/dev/null & disown; fi; }; f; exit'
+jl() { 
+    if [[ $(ps -x | grep "[j]upyterlab") ]]; then
+        $CHROMEPATH --app=http://localhost:8888/lab
+    else
+        $JUPYTERENVPATH/bin/python -m jupyterlab --browser="$CHROMEPATH --app=%s" </dev/null &>/dev/null & disown
+    fi
+}
+
+# change wallpaper (feh + bspwm)
+setwall() {
+    # edit fehbg
+    sed -i "s:'.*':'$1':g" ~/.fehbg
+    ~/.fehbg
+
+    # determine dominant color and edit bspwmrc
+    border=$(python ~/.scripts/get_dominant_color.py $1)
+    sed -i "s/\(bspc config focused_border_color\).*/\1 '$border'/" ~/.config/bspwm/bspwmrc
+    ~/.config/bspwm/bspwmrc
+}
