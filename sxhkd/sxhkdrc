@@ -145,3 +145,7 @@ Print
 # lock screen using slock
 super + l
     slock
+
+# spotify
+XF86Audio{Play,Pause,Next,Prev}
+    playerctl -p spotify {play-pause,play-pause,next,previous}
