@@ -1,0 +1,10 @@
+alias ls="ls --color=auto"
+alias vim="nvim"
+alias top="bashtop"
+alias dev="tmux source .tmuxrc"
+alias minecraft="java -jar /mnt/ext/minecraft_linux/TLauncher-2.75.jar && exit"
+
+# jupyterlab
+JUPYTERENVPATH="$HOME/jupyterlab/.venv"
+CHROMEPATH="/opt/google/chrome/google-chrome"
+alias jl='f(){ if [[ $(ps -x | grep "[j]upyterlab") ]]; then; $CHROMEPATH --app=http://localhost:8888/lab; else; $JUPYTERENVPATH/bin/python -m jupyterlab --browser="$CHROMEPATH --app=%s" </dev/null &>/dev/null & disown; fi; }; f; exit'
