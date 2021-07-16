@@ -113,7 +113,7 @@ highlight CursorLineNr guifg=white ctermfg=15 cterm=bold
 highlight Whitespace ctermfg=236 guifg=grey19
 highlight Pmenu ctermbg=238 guibg=#444444
 highlight StatusLine ctermfg=233 guifg=#121212
-highlight StatusLineNC ctermfg=235 guifg=#262626
+highlight StatusLineNC ctermfg=233 guifg=#121212
 highlight LineNr ctermfg=242
 
 
@@ -122,7 +122,6 @@ call plug#begin('~/.vim/plugged')
 " general purpose
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
-Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 
@@ -145,7 +144,9 @@ Plug 'vim-python/python-syntax'
 Plug 'maxmellon/vim-jsx-pretty'
 
 " statusline
-Plug 'hoob3rt/lualine.nvim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 
@@ -269,187 +270,71 @@ command! -bang -nargs=* GGrep
 
 
 " ------------- STATUSLINE -------------- "
-" lualine config
-lua <<EOF
-local lualine = require 'lualine'
+let g:airline_theme = 'serene'
+let g:airline_powerline_fonts = 1
+  let g:webdevicons_enable_airline_statusline = 0
 
--- color table for highlights
-local colors = {
-  bg = '#121212',
-  fg = '#eeeeee',
-  yellow = '#ECBE7B',
-  cyan = '#008080',
-  darkblue = '#081633',
-  green = '#98be65',
-  orange = '#FF8800',
-  violet = '#a9a1e1',
-  magenta = '#c678dd',
-  blue = '#51afef',
-  red = '#ec5f67'
-}
+" items
+au User AirlineAfterInit  :let g:airline_section_b = airline#section#create(['%<', 'path', 'readonly', 'coc_status', 'lsp_progress'])
+au User AirlineAfterInit  :let g:airline_section_c = airline#section#create(['branch'])
+au User AirlineAfterInit  :let g:airline_section_x = airline#section#create(['coc_current_function', 'bookmark', 'scrollbar', 'tagbar', 'vista', 'gutentags', 'gen_tags', 'omnisharp', 'grepper'])
+au User AirlineAfterInit  :let g:airline_section_y = airline#section#create(['%l:%v'])
+au User AirlineAfterInit  :let g:airline_section_z = airline#section#create(['%{WebDevIconsGetFileTypeSymbol()}', ' ', 'filetype'])
 
-local conditions = {
-  buffer_not_empty = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
-  hide_in_width = function() return vim.fn.winwidth(0) > 80 end,
-  check_git_workspace = function()
-    local filepath = vim.fn.expand('%:p:h')
-    local gitdir = vim.fn.finddir('.git', filepath .. ';')
-    return gitdir and #gitdir > 0 and #gitdir < #filepath
-  end
-}
+" custom palette
+let g:airline_theme_patch_func = 'AirlineThemePatch'
+function! AirlineThemePatch(palette)
+  if g:airline_theme == 'serene'
+      " remove colors
+      for colors in values(a:palette.normal)
+          let colors[0] = '#eeeeee'
+          let colors[1] = '#121212'
+      endfor
+      for colors in values(a:palette.normal_modified)
+          let colors[0] = '#eeeeee'
+          let colors[1] = '#121212'
+      endfor
+      for colors in values(a:palette.insert)
+          let colors[0] = '#eeeeee'
+          let colors[1] = '#121212'
+      endfor
+      for colors in values(a:palette.insert_modified)
+          let colors[0] = '#eeeeee'
+          let colors[1] = '#121212'
+      endfor
+      for colors in values(a:palette.replace)
+          let colors[0] = '#eeeeee'
+          let colors[1] = '#121212'
+      endfor
+      for colors in values(a:palette.replace_modified)
+          let colors[0] = '#eeeeee'
+          let colors[1] = '#121212'
+      endfor
+      for colors in values(a:palette.visual)
+          let colors[0] = '#eeeeee'
+          let colors[1] = '#121212'
+      endfor
+      for colors in values(a:palette.visual_modified)
+          let colors[0] = '#eeeeee'
+          let colors[1] = '#121212'
+      endfor
 
--- config
-local config = {
-  options = {
-    -- disable sections and component separators
-    component_separators = "",
-    section_separators = "",
-    theme = {
-      -- we are going to use lualine_c an lualine_x as left and
-      -- right section. Both are highlighted by c theme .  So we
-      -- are just setting default looks o statusline
-      normal = {c = {fg = colors.fg, bg = colors.bg}},
-      inactive = {c = {fg = colors.fg, bg = colors.bg}}
-    }
-  },
-  sections = {
-    -- these are to remove the defaults
-    lualine_a = {},
-    lualine_b = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {}
-  },
-  inactive_sections = {
-    -- these are to remove the defaults
-    lualine_a = {},
-    lualine_v = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {}
-  }
-}
+      " status text color
+      let a:palette['normal']['airline_a'][0] = '#98be65'
+      let a:palette['insert']['airline_a'][0] = '#51afef'
+      let a:palette['replace']['airline_a'][0] = '#ec5f67'
+      let a:palette['visual']['airline_a'][0] = '#c678dd'
 
--- inserts a component in lualine_c at left section
-local function ins_left(component)
-  table.insert(config.sections.lualine_c, component)
-end
+      " branch color
+      let a:palette['normal']['airline_c'][0] = '#a9a1e1'
+      let a:palette['normal_modified']['airline_c'][0] = '#a9a1e1'
 
--- inserts a component in lualine_x ot right section
-local function ins_right(component)
-  table.insert(config.sections.lualine_x, component)
-end
-
-ins_left {
-  -- mode component
-  function()
-    -- auto change color according to neovims mode
-    local mode_color = {
-      n = colors.green,
-      i = colors.blue,
-      v = colors.red,
-      [''] = colors.blue,
-      V = colors.blue,
-      c = colors.magenta,
-      no = colors.red,
-      s = colors.orange,
-      S = colors.orange,
-      [''] = colors.orange,
-      ic = colors.yellow,
-      R = colors.violet,
-      Rv = colors.violet,
-      cv = colors.red,
-      ce = colors.red,
-      r = colors.cyan,
-      rm = colors.cyan,
-      ['r?'] = colors.cyan,
-      ['!'] = colors.red,
-      t = colors.red
-    }
-
-    local mode_name = {
-	 n  = 'NORMAL',
-	 no = 'N·OPERATOR PENDING',
-	 v  = 'VISUAL',
-	 V  = 'V·LINE',
-	 [''] = 'V·BLOCK',
-	 s  = 'SELECT',
-	 S  = 'S·LINE',
-	 [''] = 'S·BLOCK',
-	 i  = 'INSERT',
-	 R  = 'REPLACE',
-	 Rv = 'V·REPLACE',
-	 c  = 'COMMAND',
-	 cv = 'VIM EX',
-	 ce = 'EX',
-	 r  = 'PROMPT',
-	 rm = 'MORE',
-	 ['r?'] = 'CONFIRM',
-	 ['!']  = 'SHELL',
-	}
-
-    vim.api.nvim_command(
-        'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()] .. " guibg=" ..
-            colors.bg)
-    return mode_name[vim.fn.mode()]
-  end,
-  color = "LualineMode",
-  left_padding = 1
-}
-
-ins_left {
-  'filename',
-  condition = conditions.buffer_not_empty,
-  color = {fg = colors.fg, gui = 'bold'}
-}
-
-ins_left {
-  'branch',
-  icon = '',
-  condition = conditions.check_git_workspace,
-  color = {fg = colors.violet, gui = 'bold'}
-}
-
--- insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
-ins_left {function() return '%=' end}
-
-ins_right {
-  'diff',
-  symbols = {added = ' ', modified = '柳', removed = ' '},
-  color_added = colors.green,
-  color_modified = colors.orange,
-  color_removed = colors.red,
-  condition = conditions.hide_in_width
-}
-
-ins_right {
-  'diagnostics',
-  sources = {'coc'},
-  symbols = {error = ' ', warn = ' ', info = ' '},
-  color_error = colors.red,
-  color_warn = colors.yellow,
-  color_info = colors.cyan
-}
-
-ins_right {
-  'location',
-  color = {fg = colors.fg, gui = 'bold'}
-}
-
-ins_right {
-  'filetype',
-  color = {fg = colors.magenta, gui = 'bold'}
-}
-
-ins_right {
-  right_padding = 1
-}
-
-lualine.setup(config)
-EOF
+      " filetype color
+      let a:palette['normal']['airline_z'][0] = '#c678dd'
+      let a:palette['insert']['airline_z'][0] = '#c678dd'
+      let a:palette['visual']['airline_z'][0] = '#c678dd'
+    endif
+endfunction
 
 
 " ---------------- MISC ----------------- "
