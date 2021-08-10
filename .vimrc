@@ -69,7 +69,7 @@ set startofline
 set noshowmode
 
 " faster updatetime
-set updatetime=750
+" set updatetime=750
 
 " ---------------- KEYS ----------------- "
 " use ` as Leader
@@ -121,6 +121,7 @@ highlight LineNr ctermfg=242
 call plug#begin('~/.vim/plugged')
 " general purpose
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
@@ -170,7 +171,7 @@ hi GitGutterDelete ctermfg=203 guifg=#ff5f5f
 
 " ---------------- CoC ------------------ "
 " extensions
-let g:coc_global_extensions = ['coc-tsserver', 'coc-prettier', 'coc-snippets', 'coc-json']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-prettier', 'coc-snippets', 'coc-json', 'coc-pyright']
 
 " coc-snippets config
 inoremap <silent><expr> <TAB>
@@ -275,9 +276,9 @@ let g:airline_powerline_fonts = 1
   let g:webdevicons_enable_airline_statusline = 0
 
 " items
-au User AirlineAfterInit  :let g:airline_section_b = airline#section#create(['%<', 'path', 'readonly', 'coc_status', 'lsp_progress'])
+au User AirlineAfterInit  :let g:airline_section_b = airline#section#create(['%<', '%t', 'readonly',  'lsp_progress'])
 au User AirlineAfterInit  :let g:airline_section_c = airline#section#create(['branch'])
-au User AirlineAfterInit  :let g:airline_section_x = airline#section#create(['coc_current_function', 'bookmark', 'scrollbar', 'tagbar', 'vista', 'gutentags', 'gen_tags', 'omnisharp', 'grepper'])
+au User AirlineAfterInit  :let g:airline_section_x = airline#section#create(['coc_current_function',  'coc_status', 'bookmark', 'scrollbar', 'tagbar', 'vista', 'gutentags', 'gen_tags', 'omnisharp', 'grepper'])
 au User AirlineAfterInit  :let g:airline_section_y = airline#section#create(['%l:%v'])
 au User AirlineAfterInit  :let g:airline_section_z = airline#section#create(['%{WebDevIconsGetFileTypeSymbol()}', ' ', 'filetype'])
 
@@ -345,6 +346,9 @@ endif
 
 " start netrw in tree liststyle
 let g:netrw_liststyle = 3
+
+" enable all Python syntax highlights
+let g:python_highlight_all = 1
 
 " auto limit linewidth in .md files
 au BufRead,BufNewFile *.md setlocal textwidth=75

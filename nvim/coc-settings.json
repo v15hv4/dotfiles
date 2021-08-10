@@ -12,6 +12,14 @@
     ],
     "coc.preferences.formatOnType": true,
     "coc.preferences.hoverTarget": "echo",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length=100"],
+    "python.linting.pylintArgs": ["--load-plugins=pylint_django"],
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportGeneralTypeIssues": "none",
+        "reportUnusedVariable": "information",
+        "reportFunctionMemberAccess": "information"
+    },
     "prettier.printWidth": 100,
     "prettier.tabWidth": 4,
     "prettier.trailingComma": "es5",
