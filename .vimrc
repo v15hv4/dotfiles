@@ -91,7 +91,7 @@ nnoremap <C-Right> <C-W><C-L>
 nnoremap <C-Left> <C-W><C-H>
 
 
-" ---------------- TABS ----------------- "
+" --------------- TABS ------------------ "
 " navigating tabs
 nnoremap <M-Right> :tabn<CR>
 nnoremap <M-Left> :tabp<CR>
@@ -135,9 +135,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 
 " nerdtree & co
-Plug 'preservim/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'preservim/nerdtree'
+" Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" nvim tree
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 
 " syntax highlighting
 Plug 'pangloss/vim-javascript'
@@ -151,11 +155,18 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 
-" -------------- NERDTREE --------------- "
-nnoremap <C-b> :NERDTreeTabsToggle<CR>
+" -------------- NVIM TREE -------------- "
+nnoremap <C-b> :NvimTreeToggle<CR>
+" nnoremap <C-r> :NvimTreeRefresh<CR>
+" let g:nvim_tree_disable_default_keybindings = 0
+let g:nvim_tree_hide_dotfiles = 1
+let g:nvim_tree_gitignore = 1
+let g:nvim_tree_auto_close = 1
+let g:nvim_tree_follow = 1 
+let g:nvim_tree_git_hl = 1
 
 
-" -------------- GITGUTTER -------------- "
+" --------------- GITGUTTER -------------- "
 " basic config
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_enabled = 1
@@ -242,9 +253,6 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-" get files
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
 " get text in files with Rg
 command! -bang -nargs=* Rg
@@ -336,6 +344,61 @@ function! AirlineThemePatch(palette)
       let a:palette['visual']['airline_z'][0] = '#c678dd'
     endif
 endfunction
+
+
+" ---------------- TERMINAL ----------------- "
+" Floating Term
+let s:float_term_border_win = 0
+let s:float_term_win = 0
+function! FloatTerm(...)
+    " Configuration
+    let height = float2nr((&lines - 2) * 0.6)
+    let row = float2nr((&lines - height) / 2)
+    let width = float2nr(&columns * 0.6)
+    let col = float2nr((&columns - width) / 2)
+    " Border Window
+    let border_opts = {
+                \ 'relative': 'editor',
+                \ 'row': row - 1,
+                \ 'col': col - 2,
+                \ 'width': width + 4,
+                \ 'height': height + 2,
+                \ 'style': 'minimal'
+                \ }
+    " Terminal Window
+    let opts = {
+                \ 'relative': 'editor',
+                \ 'row': row,
+                \ 'col': col,
+                \ 'width': width,
+                \ 'height': height,
+                \ 'style': 'minimal'
+                \ }
+    let top = "╭" . repeat("─", width + 2) . "╮"
+    let mid = "│" . repeat(" ", width + 2) . "│"
+    let bot = "╰" . repeat("─", width + 2) . "╯"
+    let lines = [top] + repeat([mid], height) + [bot]
+    let bbuf = nvim_create_buf(v:false, v:true)
+    call nvim_buf_set_lines(bbuf, 0, -1, v:true, lines)
+    let s:float_term_border_win = nvim_open_win(bbuf, v:true, border_opts)
+    let buf = nvim_create_buf(v:false, v:true)
+    let s:float_term_win = nvim_open_win(buf, v:true, opts)
+    " Styling
+    hi FloatWinBorder guifg=#87bb7c
+    call setwinvar(s:float_term_border_win, '&winhl', 'Normal:FloatWinBorder')
+    call setwinvar(s:float_term_win, '&winhl', 'Normal:Normal')
+    if a:0 == 0
+        terminal
+    else
+        call termopen(a:1)
+    endif
+    startinsert
+    " Close border window when terminal window close
+    autocmd TermClose * ++once :bd! | call nvim_win_close(s:float_term_border_win, v:true)
+endfunction
+
+" Open floating terminal
+nnoremap tt :call FloatTerm()<CR>
 
 
 " ---------------- MISC ----------------- "
