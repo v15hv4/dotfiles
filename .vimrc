@@ -114,7 +114,7 @@ highlight Whitespace ctermfg=236 guifg=grey19
 highlight Pmenu ctermbg=238 guibg=#444444
 highlight StatusLine ctermfg=233 guifg=#121212
 highlight StatusLineNC ctermfg=233 guifg=#121212
-highlight LineNr ctermfg=242
+highlight LineNr ctermfg=103 guifg=#555555
 
 
 " ---------------- PLUG ----------------- "
@@ -134,19 +134,15 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 
-" nerdtree & co
-" Plug 'preservim/nerdtree'
-" Plug 'jistr/vim-nerdtree-tabs'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-
 " nvim tree
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 
-" syntax highlighting
+" syntax highlighting & language specific plugins
 Plug 'pangloss/vim-javascript'
 Plug 'vim-python/python-syntax'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'rhysd/vim-clang-format'
 
 " statusline
 Plug 'vim-airline/vim-airline'
@@ -160,8 +156,6 @@ call plug#end()
 
 " -------------- NVIM TREE -------------- "
 nnoremap <C-b> :NvimTreeToggle<CR>
-" nnoremap <C-r> :NvimTreeRefresh<CR>
-" let g:nvim_tree_disable_default_keybindings = 0
 let g:nvim_tree_hide_dotfiles = 1
 let g:nvim_tree_gitignore = 1
 let g:nvim_tree_auto_close = 1
@@ -185,7 +179,7 @@ hi GitGutterDelete ctermfg=203 guifg=#ff5f5f
 
 " ---------------- CoC ------------------ "
 " extensions
-let g:coc_global_extensions = ['coc-tsserver', 'coc-prettier', 'coc-snippets', 'coc-json', 'coc-pyright']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-prettier', 'coc-snippets', 'coc-json', 'coc-pyright', 'coc-clangd']
 
 " coc-snippets config
 inoremap <silent><expr> <TAB>
@@ -363,20 +357,22 @@ nnoremap tt :FloatermToggle<CR>
 function RunCode()
     let l:ext = expand('%:e')
     if ext == "c"
-            FloatermNew gcc % -lm && ./a.out
-        elseif ext == "cpp"
-            FloatermNew g++ % && ./a.out
-        elseif ext == "py"
-            FloatermNew python %
-        elseif ext == "m"
-            FloatermNew octave %
-        elseif ext == "js"
-            FloatermNew node %
-        elseif ext == "go"
-            FloatermNew go run %
-        elseif ext == "dart"
-            FloatermNew dart %
-        endif
+        FloatermNew gcc % -lm && ./a.out
+    elseif ext == "cpp"
+        FloatermNew g++ % && ./a.out
+    elseif ext == "py"
+        FloatermNew python %
+    elseif ext == "m"
+        FloatermNew octave %
+    elseif ext == "js"
+        FloatermNew node %
+    elseif ext == "go"
+        FloatermNew go run %
+    elseif ext == "dart"
+        FloatermNew dart %
+    elseif ext == "tex"
+        call jobstart('zathura '.expand('%:r').'.pdf')
+    endif
 endfunction
 
 " Run current file
@@ -388,14 +384,37 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" file skeletons
+if has("autocmd")
+    augroup templates
+        autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+        autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c
+        autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp
+        autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
+
+        " parse special text in the templates after the read
+        autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+    augroup END
+endif
+
 " start netrw in tree liststyle
 let g:netrw_liststyle = 3
 
 " enable all Python syntax highlights
 let g:python_highlight_all = 1
 
-" auto limit linewidth in .md files
-au BufRead,BufNewFile *.md setlocal textwidth=75
+" clang format options
+let g:clang_format#auto_format = 1
+let g:clang_format#detect_style_file = 1
+let g:clang_format#style_options = {
+            \ "Standard" : "C++11",
+            \ "ColumnLimit" : 100}
+
+" auto limit linewidth in .md and .tex files
+au BufRead,BufNewFile *.tex setlocal textwidth=100
+
+" auto compile .tex files on save
+au BufWritePost *.tex silent !docker run --rm -v $(pwd):/workdir danteev/texlive latexmk -pdf %
 
 " toggle line wrapping
 let g:wrapping_on = 0

@@ -8,7 +8,8 @@
         "json",
         "scss",
         "sass",
-        "dart"
+        "dart",
+        "js"
     ],
     "coc.preferences.formatOnType": true,
     "coc.preferences.hoverTarget": "echo",
