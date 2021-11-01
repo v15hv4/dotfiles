@@ -143,6 +143,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'vim-python/python-syntax'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'rhysd/vim-clang-format'
+Plug 'jupyter-vim/jupyter-vim'
 
 " statusline
 Plug 'vim-airline/vim-airline'
@@ -353,6 +354,7 @@ hi FloatermBorder guibg=#080808 guifg=#87bb7c
 " keymaps
 nnoremap tt :FloatermToggle<CR>
 
+
 " ------------ CODE RUNNER ------------- "
 function RunCode()
     let l:ext = expand('%:e')
@@ -372,11 +374,26 @@ function RunCode()
         FloatermNew dart %
     elseif ext == "tex"
         call jobstart('zathura '.expand('%:r').'.pdf')
+    elseif ext == "ipy"
+        call jobstart('jupyter-qtconsole')
+        JupyterConnect
     endif
 endfunction
 
 " Run current file
 nmap <F5> :call RunCode()<CR>
+
+
+" -------------- JUPYTER ----------------- "
+" edit .ipy files as .py
+autocmd BufNewFile,BufRead *.ipy set filetype=python
+
+" Enter to run cell
+nnoremap   :JupyterSendCell<CR><Esc>
+
+" set conceal level
+setlocal conceallevel=1
+setlocal concealcursor=vic
 
 " ---------------- MISC ----------------- "
 " remember cursor position

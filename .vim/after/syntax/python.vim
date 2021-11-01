@@ -87,11 +87,6 @@ syn keyword pythonSelf self cls
 
 
 " }}}
-
-
-
-
-
 " Decorators {{{
 
 " ==============
@@ -107,11 +102,6 @@ syn match   pythonDot        "\." display containedin=pythonDottedName
 
 
 " }}}
-
-
-
-
-
 " Comments {{{
 
 " ============
@@ -129,11 +119,6 @@ syn keyword pythonTodo      TODO FIXME XXX contained
 
 
 " }}}
-
-
-
-
-
 " Errors {{{
 
 " ==========
@@ -467,3 +452,11 @@ hi! link pythonStatement GruvboxYellow
 hi! link pythonNumber  GruvboxPurple
 
 hi! link pythonExtraOperator GruvboxRed
+
+
+" Conceal
+syntax match jupyterCell "^##" conceal cchar=—
+highlight! link jupyterCell Jupyter
+highlight Jupyter guifg=#ffffff
+highlight Conceal guifg=#ffffff
+
