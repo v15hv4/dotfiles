@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 # load cuda modules
-module load cuda/11.0
-module load cudnn/8-cuda-11.0
+module load cuda/10.2
+module load cudnn/7.6.5-cuda-10.2
+
+# display loaded modules
+module list
 
 # start jupyter notebook server
 jupyter notebook \
