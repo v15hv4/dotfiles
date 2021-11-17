@@ -7,7 +7,7 @@ NODELIST=()
 # help text
 if [ $# -eq 0 ]
 then
-    echo "Usage: ./touchscratch.sh -w <nodes> -p <partition> -d <directory name>" >&2
+    echo "Usage: ./touchloop.sh -w <nodes> -p <partition> -d <directory name>" >&2
     exit
 fi
 
@@ -38,6 +38,6 @@ do
     node="gnode$idx"
 
     echo "Touching $PARTNAME/$DIRNAME in $node..."
-    srun -c 1 -w $node touch $PARTNAME/$DIRNAME
+    srun -c 1 -w $node find $PARTNAME/$DIRNAME -exec touch {} +
     echo
 done
