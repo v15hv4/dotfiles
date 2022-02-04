@@ -118,7 +118,13 @@ highlight LineNr ctermfg=103 guifg=#555555
 
 
 " ---------------- PLUG ----------------- "
+" run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 call plug#begin('~/.vim/plugged')
+
 " general purpose
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -156,12 +162,68 @@ call plug#end()
 
 
 " -------------- NVIM TREE -------------- "
+lua <<EOF
+require'nvim-tree'.setup {
+  disable_netrw       = true,
+  hijack_netrw        = true,
+  open_on_setup       = false,
+  ignore_ft_on_setup  = {},
+  auto_close          = false,
+  open_on_tab         = false,
+  hijack_cursor       = false,
+  update_cwd          = false,
+  update_to_buf_dir   = {
+    enable = true,
+    auto_open = true,
+  },
+  diagnostics = {
+    enable = false,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    }
+  },
+  update_focused_file = {
+    enable      = false,
+    update_cwd  = false,
+    ignore_list = {}
+  },
+  system_open = {
+    cmd  = nil,
+    args = {}
+  },
+  filters = {
+    dotfiles = false,
+    custom = {}
+  },
+  git = {
+    enable = true,
+    ignore = true,
+    timeout = 500,
+  },
+  view = {
+    width = 30,
+    height = 30,
+    hide_root_folder = false,
+    side = 'left',
+    auto_resize = false,
+    mappings = {
+      custom_only = false,
+      list = {}
+    },
+    number = false,
+    relativenumber = false,
+    signcolumn = "yes"
+  },
+  trash = {
+    cmd = "trash",
+    require_confirm = true
+  }
+}
+EOF
 nnoremap <C-b> :NvimTreeToggle<CR>
-let g:nvim_tree_hide_dotfiles = 1
-let g:nvim_tree_gitignore = 1
-let g:nvim_tree_auto_close = 1
-let g:nvim_tree_follow = 1 
-let g:nvim_tree_git_hl = 1
 
 
 " --------------- GITGUTTER -------------- "
@@ -279,7 +341,7 @@ command! -bang -nargs=* GGrep
 " ------------- STATUSLINE -------------- "
 let g:airline_theme = 'serene'
 let g:airline_powerline_fonts = 1
-  let g:webdevicons_enable_airline_statusline = 0
+let g:webdevicons_enable_airline_statusline = 0
 
 " items
 au User AirlineAfterInit  :let g:airline_section_b = airline#section#create(['%<', '%t', 'readonly',  'lsp_progress'])
@@ -389,7 +451,7 @@ nmap <F5> :call RunCode()<CR>
 autocmd BufNewFile,BufRead *.ipy set filetype=python
 
 " Enter to run cell
-nnoremap   :JupyterSendCell<CR><Esc>
+" nnoremap   :JupyterSendCell<CR><Esc>
 
 " set conceal level
 setlocal conceallevel=1
