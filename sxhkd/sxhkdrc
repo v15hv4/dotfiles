@@ -166,7 +166,7 @@ Print
 
 # lock screen using slock
 {super,alt} + l
-    light-locker-command -l
+    slock
 
 # spotify
 XF86Audio{Play,Pause,Next,Prev}
