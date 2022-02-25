@@ -1,8 +1,68 @@
 alias ls="ls --color=auto"
 alias vim="nvim"
 alias top="bashtop"
-alias dev="tmux source .tmuxrc"
-alias minecraft="java -jar /mnt/ext/minecraft_linux/TLauncher-2.75.jar && exit"
+alias cat="bat"
+alias moss="/mnt/ext/MOSS/moss.pl"
+alias moodle="~/.scripts/moodle/.venv/bin/python3 ~/.scripts/moodle/moodle.py"
+
+alias xdocker="docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/user/.Xauthority -v $HOME/share/docker:/share"
+alias latexmk="docker run --rm -it -v $(pwd):/workdir danteev/texlive latexmk"
+
+# create a dir on extHDD and symlink it to current dir
+function extmkdir() {
+    mkdir /mnt/ext/$1
+    ln -s /mnt/ext/$1 .
+}
+
+# new python venv
+function pyvenv() {
+    python -m venv $1
+    source $1/bin/activate
+    pip install neovim black
+    echo "source $1/bin/activate" >> .in
+    echo "deactivate" >> .out
+}
+
+# tunnel ports to ada gnode
+# USage: ada-tunnel []
+function ada-tunnel() { 
+    ADA_USER=vishva.saravanan
+
+    ssh -f -N -L ${1}:localhost:${1} -J ada $ADA_USER@gnode$2 && echo "\033[0;32mOK:\033[0m Tunneling port $1 to ada gnode$2."
+}
+
+# run commands on ada gnode
+# Usage: gnode-run [gnode#] [COMMAND]
+function gnode-run() { 
+    ADA_USER=vishva.saravanan
+
+    ssh -J ada $ADA_USER@gnode$1 ${@:2}
+}
+
+# mount ada fs locally using sshfs
+function ada-mount() {
+    ADA_USER=vishva.saravanan
+    ID_PATH=/home/v15hv4/.ssh/id_ed25519
+    MOUNT_POINT=/mnt/ada
+
+    sudo sshfs -o allow_other,IdentityFile=$ID_PATH $ADA_USER@ada.iiit.ac.in:/home2/$ADA_USER $MOUNT_POINT && cd $MOUNT_POINT
+}
+
+# jupyterlab app
+function jlab() {
+    JUPYTERPORT=8888
+    echo $#
+    if [[ "$#" > 1 ]]; then
+        JUPYTERPORT=$2
+    fi
+
+    google-chrome-stable --app="http://localhost:$JUPYTERPORT/lab?token=$1"
+}
+
+# run volatility in docker
+function volatility() {
+    docker run --rm --user=$(id -u):$(id -g) -v "$(pwd)":/dumps:rw,Z -ti phocean/volatility $@
+}
 
 # jupyterlab
 JUPYTERENVPATH="$HOME/jupyterlab/.venv"
