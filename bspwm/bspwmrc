@@ -4,15 +4,14 @@ $HOME/.config/polybar/launch.sh
 $HOME/.scripts/rsim.sh
 $HOME/.fehbg
 
-picom -b --experimental-backends --backend glx
+picom -b --experimental-backends
 pgrep -x sxhkd > /dev/null || sxhkd &
-light-locker > /dev/null &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
-bspc config window_gap          15
+bspc config window_gap          12
 bspc config border_width         6
-bspc config focused_border_color '#555566'
+bspc config focused_border_color '#775588'
 
 bspc config split_ratio          0.5
 bspc config borderless_monocle   true
