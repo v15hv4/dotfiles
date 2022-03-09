@@ -7,6 +7,9 @@ BACKUP_OLD=1
 INSTALL_MINICONDA=1
 ZSH_INSTALLED=$(command -v zsh)
 
+GIT_EMAIL=vishva2912@gmail.com
+GIT_USERNAME=v15hv4
+
 # install miniconda
 if [ ! -z "$INSTALL_MINICONDA" ]; then
 	mkdir -p ~/miniconda3
@@ -36,6 +39,10 @@ fi
 # 	[[ (-f $HOME/$dotfile) && $BACKUP_OLD ]] && mv $HOME/$dotfile $HOME/$dotfile.old
 # 	ln -s $DOTFILES_PATH/$dotfile $HOME
 # done
+
+# configure git
+git config --global user.email "$GIT_EMAIL"
+git config --global user.name "$GIT_USERNAME"
 
 # success!
 echo "done."
