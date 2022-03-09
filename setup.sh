@@ -34,11 +34,11 @@ if [ ! -z "$ZSH_INSTALLED" ]; then
 fi
 
 # copying dotfiles
-# echo "linking dotfiles..."
-# for dotfile in "${DOTFILES[@]}"; do
-# 	[[ (-f $HOME/$dotfile) && $BACKUP_OLD ]] && mv $HOME/$dotfile $HOME/$dotfile.old
-# 	ln -s $DOTFILES_PATH/$dotfile $HOME
-# done
+echo "linking dotfiles..."
+for dotfile in "${DOTFILES[@]}"; do
+	[[ (-f $HOME/$dotfile) && $BACKUP_OLD ]] && mv $HOME/$dotfile $HOME/$dotfile.old
+	ln -s $DOTFILES_PATH/$dotfile $HOME
+done
 
 # configure git
 git config --global user.email "$GIT_EMAIL"
