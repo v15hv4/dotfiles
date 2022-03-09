@@ -43,6 +43,7 @@ done
 # configure git
 git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_USERNAME"
+git config --global core.editor "vim"
 
 # success!
 echo "done."
