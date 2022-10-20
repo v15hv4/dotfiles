@@ -1,0 +1,155 @@
+*,
+*:hover {
+    border: none;
+    border-radius: 4;
+    font-family: Ligalex Mono, "Font Awesome 5 Free";
+    font-size: 15px;
+    font-weight: normal;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #000000;
+    color: #dedede;
+}
+
+tooltip {
+    background: #121212;
+    border: none;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #4f6580;
+}
+
+#workspaces button {
+    padding: 3px;
+    color: #434343;
+}
+
+#workspaces button.active {
+    color: #dedede;
+}
+
+#workspaces button.focused {
+    color: #dedede;
+}
+
+#workspaces button.urgent {
+    color: #0f0f0f;
+}
+
+#workspaces button:hover {
+    color: #000000;
+}
+
+#clock,
+#pulseaudio,
+#network,
+#tray,
+#cpu,
+#memory,
+#disk,
+#backlight,
+#battery {
+    color: #dedede;
+    background: #000000;
+    padding: 4px 0px;
+    margin: 0px 8px;
+}
+
+#network:hover {
+    all: inherit;
+    padding: 0px;
+    margin: 0px 8px;
+}
+
+#pulseaudio:hover {
+    all: inherit;
+    padding: 0px;
+    margin: 0px 8px;
+}
+
+#custom-sep {
+    margin: 0px 4px;
+    padding: 0px;
+}
+
+#tray {
+}
+
+#workspaces {
+}
+
+#clock {
+}
+
+#network {
+    color: #aeea00;
+}
+
+#network.disconnected {
+    color: #ff6e40;
+}
+
+#pulseaudio {
+    color: #aeea00;
+}
+
+#pulseaudio.muted {
+    color: #ff6e40;
+}
+
+#battery {
+}
+
+#backlight {
+}
+
+#cpu {
+    color: #ffe57f;
+}
+
+#memory {
+    color: #8c9eff;
+}
+
+#disk {
+    color: #ffab40;
+}
+
+#custom-spotify-metadata,
+#custom-spotify-play-pause,
+#custom-spotify-prev,
+#custom-spotify-next,
+#custom-spotify-quit {
+    color: #dedede;
+    padding: 0px 10px;
+}
+#custom-spotify-metadata {
+    margin-left: 8px;
+    background: #000000;
+}
+#custom-spotify-prev {
+    margin: 3px 0;
+    background: #000000;
+}
+#custom-spotify-play-pause {
+    margin: 3px 0;
+    background: #000000;
+}
+#custom-spotify-next {
+    margin: 3px 0;
+    background: #000000;
+}
+
+#custom-powermenu {
+    padding: 0px;
+    padding-left: 4px;
+    padding-right: 10px;
+}
+
+#custom-launcher {
+    padding: 0px;
+    padding-left: 4px;
+    padding-right: 10px;
+}

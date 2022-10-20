@@ -7,8 +7,8 @@ FONTS_PATH=$HOME/.local/share/fonts
 INSTALL_YAY=$(command -v yay)
 BACKUP_OLD=1
 
-PACKAGES=(alsa-utils bspwm dunst imagemagick feh flameshot kitty neovim nodejs npm picom polybar pulseaudio redshift rofi sxhkd tmux unzip wget zsh)
-CONFS=(bspwm dunst kitty nvim picom polybar sxhkd)
+PACKAGES=(alsa-utils imagemagick feh kitty neovim nodejs npm pulseaudio redshift rofi tmux unzip wget zsh)
+CONFS=(kitty nvim)
 DOTFILES=(.p10k.zsh .tmux.conf .vim .vimrc .zsh_aliases .zshrc .scripts)
 
 # install yay
