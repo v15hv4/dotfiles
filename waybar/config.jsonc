@@ -4,7 +4,6 @@
   
   "modules-left":   [
     "tray",
-    "custom/sep",
     "wlr/workspaces",
     "custom/sep",
     "cpu",
@@ -47,10 +46,12 @@
   },
 
   "cpu": {
+    "interval": 2,
     "format": "<span font='Font Awesome 5 Free 11'></span> {usage}%"
   },
 
   "memory": {
+    "interval": 2,
     "format": "<span font='Font Awesome 5 Free 11'></span> {percentage}%"
   },
 
@@ -86,6 +87,7 @@
 
   "network": {
      "format": "{icon}",
+     "interval": 20,
      "format-alt": " {ipaddr}/{cidr}",
      "format-alt-click": "click",
      "format-wifi": "<span font='Font Awesome 5 Free 10'></span> {essid} ({signalStrength}%)",
@@ -108,7 +110,7 @@
   },
 
   "custom/spotify-monitor": {
-    "interval": 5,
+    "interval": 2,
     "exec": "~/.config/waybar/spotify/monitor.sh",
     "signal": 4
   },

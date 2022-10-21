@@ -11,6 +11,7 @@
 window#waybar {
     background: #000000;
     color: #dedede;
+    border-radius: 0;
 }
 
 tooltip {
@@ -53,7 +54,7 @@ tooltip {
 #battery {
     color: #dedede;
     background: #000000;
-    padding: 4px 0px;
+    padding: 8px 0px;
     margin: 0px 8px;
 }
 
