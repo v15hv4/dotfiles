@@ -1,0 +1,20 @@
+# cli tools
+alias ls="exa"
+alias cat="bat --theme gruvbox-light"
+alias vim="nvim"
+alias df="duf"
+alias top="bashtop"
+alias moss="~/.scripts/moss.pl"
+
+# short commands
+alias dc="docker-compose"
+alias xo="xdg-open"
+alias rs="rsync -avzWP"
+
+# custom scripts
+alias ovpn-iiit="~/.scripts/ovpn-iiit.sh"
+
+# 0x0st upload
+function nup() {
+    curl -F"file=@$(realpath $1)" http://0x0.st
+}
