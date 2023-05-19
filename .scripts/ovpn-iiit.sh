@@ -73,6 +73,10 @@ fi
 
 
 case $1 in
+    debug)
+        sudo openvpn --config $CONFIG_FILE --auth-user-pass $AUTH_FILE
+
+        ;;
     up)
         sudo openvpn --config $CONFIG_FILE --auth-user-pass $AUTH_FILE --daemon
 
@@ -94,6 +98,6 @@ case $1 in
 	tput sgr0
         ;;
     *)
-	echo "usage: ovpn-iiit [up|down]"
+	echo "usage: ovpn-iiit [up|down|debug]"
 	;;
 esac
