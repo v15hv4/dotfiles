@@ -39,6 +39,9 @@ require('packer').startup(function(use)
   -- Git
   use 'lewis6991/gitsigns.nvim'
 
+  -- Copilot
+  use 'github/copilot.vim'
+
   -- LSP
   use { 
     'VonHeikemen/lsp-zero.nvim', 
@@ -262,4 +265,8 @@ require('lualine').setup {
   tabline = {},
   extensions = {},
 }
+
+-- Copilot
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_fallback = ""
 -- }}}

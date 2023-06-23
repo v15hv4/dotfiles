@@ -18,3 +18,8 @@ alias ovpn-iiit="~/.scripts/ovpn-iiit.sh"
 function nup() {
     curl -F"file=@$(realpath $1)" http://0x0.st
 }
+
+# convert all spaces to underscores (recursively) in the current directory
+function stou() {
+    find $1 -depth -name "* *" -execdir bash -c 'mv "$1" `echo $1 | sed "s/ /_/g"`' -- {} \;
+}
