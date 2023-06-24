@@ -1,4 +1,3 @@
-
 --        .          .
 --      ';;,.        ::'
 --    ,:::;,,        :ccc,
@@ -19,64 +18,66 @@
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  is_bootstrap = true
-  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-  vim.cmd [[packadd packer.nvim]]
+    is_bootstrap = true
+    vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
+    vim.cmd [[packadd packer.nvim]]
 end
 
 require('packer').startup(function(use)
-  -- Package manager
-  use 'wbthomason/packer.nvim'
+    -- Package manager
+    use 'wbthomason/packer.nvim'
 
-  -- One Nvim colorscheme
-  use 'Th3Whit3Wolf/one-nvim'
+    -- One Nvim colorscheme
+    use 'Th3Whit3Wolf/one-nvim'
 
-  -- Fuzzy Finder (files, lsp, etc)
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use 'nvim-telescope/telescope-file-browser.nvim'
-  use 'nvim-tree/nvim-web-devicons'
+    -- Git
+    use 'lewis6991/gitsigns.nvim'
 
-  -- Git
-  use 'lewis6991/gitsigns.nvim'
+    -- LSP
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
+        requires = {
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' }, -- Required
+            {                            -- Optional
+                'williamboman/mason.nvim',
+                run = function()
+                    pcall(vim.cmd, 'MasonUpdate')
+                end,
+            },
+            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-  -- Copilot
-  use 'github/copilot.vim'
-
-  -- LSP
-  use { 
-    'VonHeikemen/lsp-zero.nvim', 
-    branch = 'v2.x', 
-    requires = {
-      {'neovim/nvim-lspconfig'},             -- Required
-      {                                      -- Optional
-        'williamboman/mason.nvim',
-        build = function()
-          pcall(vim.cmd, 'MasonUpdate')
-        end,
-      },
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
-
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},     -- Required
-      {'hrsh7th/cmp-nvim-lsp'}, -- Required
-      {'L3MON4D3/LuaSnip'},     -- Required
+            -- Autocompletion
+            { 'hrsh7th/nvim-cmp' },     -- Required
+            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+            { 'L3MON4D3/LuaSnip' },     -- Required
+        }
     }
-  }
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
+    use 'jay-babu/mason-null-ls.nvim'
 
-  -- Statusline
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-  }
+    -- Copilot
+    -- use 'github/copilot.vim'
 
-  -- Other useful plugins
-  use 'numToStr/Comment.nvim' -- 'gc' to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
-  use 'm4xshen/autoclose.nvim' -- Automatically close brackets and quotes
+    -- Statusline
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
 
-  if is_bootstrap then
-    require('packer').sync()
-  end
+    -- Other useful plugins
+    use 'numToStr/Comment.nvim'       -- 'gc' to comment visual regions/lines
+    use 'tpope/vim-sleuth'            -- Detect tabstop and shiftwidth automatically
+    use 'm4xshen/autoclose.nvim'      -- Automatically close brackets and quotes
+    use 'nvim-tree/nvim-web-devicons' -- Better icons
+
+    if is_bootstrap then
+        require('packer').sync()
+    end
 end)
 
 -- When we are bootstrapping a configuration, it doesn't
@@ -84,20 +85,20 @@ end)
 --
 -- You'll need to restart nvim, and then it will work.
 if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Packer completes,'
-  print '       then restart nvim'
-  print '=================================='
-  return
+    print '=================================='
+    print '    Plugins are being installed'
+    print '    Wait until Packer completes,'
+    print '       then restart nvim'
+    print '=================================='
+    return
 end
 
 -- Automatically source and re-compile packer whenever you save this init.lua
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
-  group = packer_group,
-  pattern = vim.fn.expand '$MYVIMRC',
+    command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+    group = packer_group,
+    pattern = vim.fn.expand '$MYVIMRC',
 })
 
 -- }}}
@@ -163,7 +164,7 @@ vim.cmd [[colorscheme one-nvim]]
 -- Fold on markers
 vim.o.foldmethod = 'marker'
 
--- Transparent background 
+-- Transparent background
 vim.cmd [[hi Normal guibg=none]]
 vim.g.one_nvim_transparent_bg = true
 
@@ -171,21 +172,16 @@ vim.g.one_nvim_transparent_bg = true
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
 })
 
 -- }}}
 
 -- KEYBINDS -- {{{
--- Telescope
-local telescope_builtin = require('telescope.builtin')
-vim.keymap.set({'n', 'i'}, '<C-b>', ':Telescope file_browser<CR>', {})
-vim.keymap.set({'n', 'i'}, '<C-f>', telescope_builtin.live_grep, {})
-
 -- Navigating splits
 vim.keymap.set('n', '<C-Up>', '<C-W><C-Up>')
 vim.keymap.set('n', '<C-Down>', '<C-W><C-Down>')
@@ -207,66 +203,182 @@ require('Comment').setup()
 require('autoclose').setup()
 require('gitsigns').setup()
 
--- Telescope
-require('telescope').setup {
-  extensions = {
-    file_browser = {
-      hijack_netrw = true,
-    }
-  }
-}
-require('telescope').load_extension 'file_browser'
-
--- LSP
-local lsp = require('lsp-zero').preset({})
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
-end)
-lsp.setup()
-
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
-cmp.setup({
-  mapping = {
-    ['<CR>'] = cmp.mapping.confirm({select = true}),
-    ['<Tab>'] = cmp_action.luasnip_supertab(),
-    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
-  },
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  }
-})
-
 -- Lualine
 local bubbles_onelight = require('lualine.themes.onelight')
 require('lualine').setup {
-  options = {
-    theme = bubbles_onelight,
-    component_separators = '|',
-    section_separators = { left = '', right = '' },
-  },
-  sections = {
-    lualine_a = { 'mode' },
-    lualine_b = { 'filename', 'branch' },
-    lualine_c = { 'fileformat' },
-    lualine_x = {},
-    lualine_y = { 'filetype', 'progress' },
-    lualine_z = { 'location' },
-  },
-  inactive_sections = {
-    lualine_a = { 'filename' },
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = { 'location' },
-  },
-  tabline = {},
-  extensions = {},
+    options = {
+        theme = bubbles_onelight,
+        component_separators = '|',
+        section_separators = { left = '', right = '' },
+    },
+    sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'filename', 'branch' },
+        lualine_c = { 'fileformat' },
+        lualine_x = {},
+        lualine_y = { 'filetype', 'progress' },
+        lualine_z = { 'location' },
+    },
+    inactive_sections = {
+        lualine_a = { 'filename' },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { 'location' },
+    },
+    tabline = {},
+    extensions = {},
 }
 
--- Copilot
-vim.g.copilot_assume_mapped = true
-vim.g.copilot_tab_fallback = ""
+-- LSP
+local lsp = require('lsp-zero').preset({})
+
+lsp.on_attach(function(client, bufnr)
+    lsp.default_keymaps({ buffer = bufnr })
+end)
+
+-- (Optional) Configure lua language server for neovim
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+-- Format on save
+lsp.format_on_save({
+    format_opts = {
+        async = true,
+        timeout_ms = 10000,
+    },
+    servers = {
+        ['null-ls'] = {'javascript', 'typescript', 'json', 'python', 'lua'}
+    }
+})
+
+lsp.setup()
+
+-- LSP features
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function()
+    local bufmap = function(mode, lhs, rhs)
+      local opts = {buffer = true}
+      vim.keymap.set(mode, lhs, rhs, opts)
+    end
+
+    -- Displays hover information about the symbol under the cursor
+    bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+
+    -- Jump to the definition
+    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+
+    -- Jump to declaration
+    bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+
+    -- Lists all the implementations for the symbol under the cursor
+    bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+
+    -- Jumps to the definition of the type symbol
+    bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+
+    -- Lists all the references 
+    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+
+    -- Displays a function's signature information
+    bufmap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+
+    -- Renames all references to the symbol under the cursor
+    bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
+
+    -- Selects a code action available at the current cursor position
+    bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+    bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+
+    -- Show diagnostics in a floating window
+    bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+
+    -- Move to the previous diagnostic
+    bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+
+    -- Move to the next diagnostic
+    bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+  end
+})
+
+-- Configure null-ls
+local null_ls = require('null-ls')
+
+null_ls.setup({
+    sources = {
+        -- Here you can add tools not supported by mason.nvim
+        -- make sure the source name is supported by null-ls
+        -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+    }
+})
+
+require('mason-null-ls').setup({
+    ensure_installed = nil,
+    automatic_installation = false, -- You can still set this to `true`
+    handlers = {
+        -- Here you can add functions to register sources.
+        -- See https://github.com/jay-babu/mason-null-ls.nvim#handlers-usage
+        --
+        -- If left empty, mason-null-ls will  use a "default handler"
+        -- to register all sources
+    }
+})
+
+-- Configure cmp
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+-- local cmp_action = require('lsp-zero').cmp_action()
+
+local select_opts = { behavior = cmp.SelectBehavior.Select }
+cmp.setup({
+    mapping = {
+        ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
+        ['<Down>'] = cmp.mapping.select_next_item(select_opts),
+
+        ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
+        ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+
+        ['<C-e>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+
+        ['<C-u>'] = cmp.mapping.abort(),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+
+        ['<C-f>'] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(1) then
+                luasnip.jump(1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+
+        ['<C-b>'] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+            elseif require("luasnip").expand_or_jumpable() then
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item(select_opts)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+    }
+})
 -- }}}
