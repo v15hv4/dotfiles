@@ -30,6 +30,9 @@ require('packer').startup(function(use)
     -- One Nvim colorscheme
     use 'Th3Whit3Wolf/one-nvim'
 
+    -- Tree
+    use 'nvim-tree/nvim-tree.lua'
+
     -- Git
     use 'lewis6991/gitsigns.nvim'
 
@@ -105,6 +108,10 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 -- OPTIONS -- {{{
 -- See `:help vim.o`
+
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Reload files changed outside of Vim
 vim.o.autoread = true
@@ -191,6 +198,9 @@ vim.keymap.set('n', '<C-Left>', '<C-W><C-H>')
 -- Navigating tabs
 vim.keymap.set('n', '<M-Right>', ':tabn<CR>')
 vim.keymap.set('n', '<M-Left>', ':tabp<CR>')
+
+-- Nvim Tree
+vim.keymap.set('n', '<C-b>', ':NvimTreeToggle<CR>')
 -- }}}
 
 -- SPLITS -- {{{
@@ -436,4 +446,19 @@ end)
 cmp.event:on("menu_closed", function()
     vim.b.copilot_suggestion_hidden = false
 end)
+
+-- Nvim Tree
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    width = 25,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  -- filters = {
+  --   dotfiles = true,
+  -- },
+})
 -- }}}
