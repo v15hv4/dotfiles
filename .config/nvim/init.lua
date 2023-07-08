@@ -72,6 +72,12 @@ require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 
+    -- Telescope
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.2',
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
+
     -- Other useful plugins
     use 'numToStr/Comment.nvim'       -- 'gc' to comment visual regions/lines
     use 'tpope/vim-sleuth'            -- Detect tabstop and shiftwidth automatically
@@ -252,15 +258,15 @@ end)
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 -- Format on save
-lsp.format_on_save({
-    format_opts = {
-        async = true,
-        timeout_ms = 10000,
-    },
-    servers = {
-        ['null-ls'] = { 'javascript', 'typescript', 'json', 'python', 'lua' }
-    }
-})
+-- lsp.format_on_save({
+--     format_opts = {
+--         async = true,
+--         timeout_ms = 10000,
+--     },
+--     servers = {
+--         ['null-ls'] = { 'javascriptreact', 'javascript', 'typescript', 'json', 'python', 'lua' }
+--     }
+-- })
 
 lsp.setup()
 
@@ -461,4 +467,10 @@ require("nvim-tree").setup({
   --   dotfiles = true,
   -- },
 })
+
+-- Telescope
+require('telescope').setup()
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<C-s>', builtin.find_files, {})
+vim.keymap.set('n', '<C-f>', builtin.live_grep, {})
 -- }}}
