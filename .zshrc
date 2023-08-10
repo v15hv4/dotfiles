@@ -78,7 +78,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions autoenv docker docker-compose)
+plugins=(git zsh-autosuggestions autoenv docker docker-compose kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -118,5 +118,11 @@ setopt nonomatch
 # zoxide
 eval "$(zoxide init zsh)"
 
+# k3s
+source <(kubectl completion zsh)
+
 # yarn global binaries
 export PATH=$PATH:~/.yarn/bin
+
+# local binaries
+export PATH=$PATH:/home/v15hv4/.local/bin
