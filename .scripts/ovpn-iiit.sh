@@ -18,7 +18,7 @@ if [[ ! -f /usr/bin/openvpn ]]; then
     echo "Check: https://community.openvpn.net/openvpn/wiki/OpenvpnSoftwareRepos"
     exit 1
 fi
-if [[ ! -f /usr/bin/update-systemd-resolved ]]; then
+if [[ ! -f /usr/local/bin/update-systemd-resolved ]]; then
     echo "update-systemd-resolved is not installed! Installing..."
     PREVWD=$(pwd)
     cd /tmp
@@ -53,8 +53,8 @@ if [[ ! -f "$CONFIG_FILE" ]]; then
     echo "dhcp-option DNS $VPN_NAMESERVER" >> $CONFIG_FILE
     echo "dhcp-option DOMAIN-ROUTE ." >> $CONFIG_FILE
     echo "script-security 2" >> $CONFIG_FILE
-    echo "up /usr/bin/update-systemd-resolved" >> $CONFIG_FILE
-    echo "down /usr/bin/update-systemd-resolved" >> $CONFIG_FILE
+    echo "up /usr/local/bin/update-systemd-resolved" >> $CONFIG_FILE
+    echo "down /usr/local/bin/update-systemd-resolved" >> $CONFIG_FILE
     echo "down-pre" >> $CONFIG_FILE
 fi
 
