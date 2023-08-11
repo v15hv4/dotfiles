@@ -118,9 +118,6 @@ setopt nonomatch
 # zoxide
 eval "$(zoxide init zsh)"
 
-# k3s
-source <(kubectl completion zsh)
-
 # yarn global binaries
 export PATH=$PATH:~/.yarn/bin
 
