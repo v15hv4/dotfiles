@@ -10,6 +10,12 @@ alias moss="~/.scripts/moss.pl"
 alias dc="docker-compose"
 alias xo="xdg-open"
 alias rs="rsync -avzWP"
+alias minecraft="java -jar ~/Downloads/TLauncher-2.885.jar"
+alias latexmk="docker run --rm -it -v $(pwd):/workdir danteev/texlive latexmk"
+
+# tunsafe
+alias tunstart="sudo tunsafe start -d ~/Documents/aws.conf"
+alias tunstop="sudo tunsafe stop tun0"
 
 # custom scripts
 alias ovpn-iiit="~/.scripts/ovpn-iiit.sh"
