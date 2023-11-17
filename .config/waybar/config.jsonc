@@ -1,0 +1,194 @@
+{
+  "position": "top",
+  "layer": "top",
+  
+  "modules-left":   [
+    "tray",
+    "hyprland/workspaces",
+    "custom/sep",
+    "cpu",
+    "memory",
+    "disk"
+  ],
+  "modules-center": [
+    "custom/spotify-monitor", 
+    "custom/spotify-metadata",
+    "custom/spotify-prev",
+    "custom/spotify-play-pause",
+    "custom/spotify-next"
+  ],
+  "modules-right":  [
+    "clock",
+    "custom/sep",
+    "network",
+    "pulseaudio",
+    "backlight",
+    "custom/sep",
+    "battery"
+  ],
+
+  "wlr/workspaces": {
+    "format": "{icon}",
+    "disable-scroll": false,
+    "on-click": "activate",
+    "format-icons": {
+        "urgent": "!",
+        "active": "",
+        "default": ""
+     },
+     "sort-by-number": true,
+     "all-outputs": false
+  },
+
+
+  "hyprland/workspaces": {
+     "format": "{icon}",
+     "on-scroll-up": "hyprctl dispatch workspace e+1",
+     "on-scroll-down": "hyprctl dispatch workspace e-1",
+     "on-click": "activate",
+     "format-icons": {
+         "urgent": "!",
+         "active": "",
+         "default": ""
+     },
+     "sort-by-number": true,
+     "all-outputs": false
+  },
+  
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  },
+
+  "cpu": {
+    "interval": 2,
+    "format": "<span font='Font Awesome 5 Free 11'></span> {usage}%"
+  },
+
+  "memory": {
+    "interval": 2,
+    "format": "<span font='Font Awesome 5 Free 11'></span> {percentage}%"
+  },
+
+  "disk": {
+    "format": "<span font='Font Awesome 5 Free 11'></span> {percentage_used}%"
+  },
+
+  "battery": {
+     "format": "<span font='Font Awesome 5 Free 11'>{icon}</span> {capacity}%",
+     "format-icons": ["", "", "", "", ""],
+     "format-charging": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}%",
+     "format-full": "<span font='Font Awesome 5 Free 11'></span>",
+     "interval": 10,
+     "states": {
+         "warning": 50,
+         "critical": 20
+     },
+     "tooltip": false
+  },
+
+  "backlight": {
+     "format": "{icon}",
+     "format-icons": ["", ""],
+     "on-scroll-up": "light -A 10",
+     "on-scroll-down": "light -U 10"
+  },
+
+  "clock": {
+    "format": " {:%I:%M %p}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><big>{calendar}</big></tt>",
+    "timezone": "Asia/Kolkata"
+  },
+
+  "network": {
+     "format": "{icon}",
+     "interval": 20,
+     "format-alt": " {ipaddr}/{cidr}",
+     "format-alt-click": "click",
+     "format-wifi": "<span font='Font Awesome 5 Free 10'></span> {essid} ({signalStrength}%)",
+     "format-ethernet": "",
+     "format-disconnected": "",
+     "tooltip": false
+  },
+  
+  "pulseaudio": {
+     "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>",
+     "format-bluetooth": "<span font='Font Awesome 5 Free 11'> {icon}</span>",
+     "format-alt": "<span font='Font Awesome 5 Free 11'>{icon}</span>",
+     "format-muted": "<span font='Font Awesome 5 Free 11'></span>",
+     "format-icons": {
+         "headphone": ["  ", "  ", "  "],
+         "default": ["", "", ""]
+     },
+     "scroll-step": 5,
+     "tooltip": false
+  },
+
+  "custom/spotify-monitor": {
+    "interval": 2,
+    "exec": "~/.config/waybar/spotify/monitor.sh",
+    "signal": 4
+  },
+  
+  "custom/spotify-metadata": {
+    "format": " {}",
+    "max-length": 40,
+    "interval": "once",
+    "return-type": "json",
+    "exec": "~/.config/waybar/spotify/metadata.sh",
+    "signal": 5
+  },
+  
+  "custom/spotify-play-pause": {
+    "format": "{}",
+    "interval": "once",
+    "return-type": "json",
+    "exec": "~/.config/waybar/spotify/play-pause.sh",
+    "on-click": "~/.config/waybar/spotify/controls.sh",
+    "signal": 5
+  },
+  
+  "custom/spotify-next": {
+    "format": "",
+    "return-type": "json",
+    "interval": "once",
+    "exec": "~/.config/waybar/spotify/metadata.sh",
+    "on-click": "~/.config/waybar/spotify/controls.sh next",
+    "signal": 5
+  },
+  
+  "custom/spotify-prev": {
+    "format": "",
+    "interval": "once",
+    "return-type": "json",
+    "exec": "~/.config/waybar/spotify/metadata.sh",
+    "on-click": "~/.config/waybar/spotify/controls.sh prev",
+    "signal": 5
+  },
+  
+  "custom/spotify-quit": {
+    "format": "",
+    "interval": "once",
+    "return-type": "json",
+    "exec": "~/.config/waybar/spotify/metadata.sh",
+    "on-click": "~/.config/waybar/spotify/quit.sh ",
+    "signal": 6
+  },
+
+  "custom/powermenu": {
+    "format": "{icon} ",
+    "interval": "once",
+    "on-click": "bash ~/.config/rofi/powermenu/powermenu.sh"
+  },
+
+  "custom/launcher": {
+    "format": "{icon} ",
+    "interval": "once",
+    "on-click": "bash ~/.config/rofi/launcher/launcher.sh"
+  },
+
+  "custom/sep": {
+      "format": "·",
+      "tooltip": false
+  }
+}
