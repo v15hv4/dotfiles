@@ -4,42 +4,23 @@
   
   "modules-left":   [
     "tray",
-    "hyprland/workspaces",
     "custom/sep",
     "cpu",
     "memory",
     "disk"
   ],
   "modules-center": [
-    "custom/spotify-monitor", 
-    "custom/spotify-metadata",
-    "custom/spotify-prev",
-    "custom/spotify-play-pause",
-    "custom/spotify-next"
+    "hyprland/workspaces"
   ],
   "modules-right":  [
-    "clock",
-    "custom/sep",
     "network",
     "pulseaudio",
     "backlight",
     "custom/sep",
-    "battery"
+    "battery",
+    "custom/sep",
+    "clock"
   ],
-
-  "wlr/workspaces": {
-    "format": "{icon}",
-    "disable-scroll": false,
-    "on-click": "activate",
-    "format-icons": {
-        "urgent": "!",
-        "active": "",
-        "default": ""
-     },
-     "sort-by-number": true,
-     "all-outputs": false
-  },
-
 
   "hyprland/workspaces": {
      "format": "{icon}",
@@ -47,12 +28,18 @@
      "on-scroll-down": "hyprctl dispatch workspace e-1",
      "on-click": "activate",
      "format-icons": {
-         "urgent": "!",
-         "active": "",
-         "default": ""
+         "urgent": "",
+         "active": "",
+         "default": ""
      },
      "sort-by-number": true,
-     "all-outputs": false
+     "all-outputs": false,
+     "persistent-workspaces": {
+       "1": [],
+       "2": [],
+       "3": [],
+       "4": []
+     }
   },
   
   "tray": {
@@ -62,23 +49,23 @@
 
   "cpu": {
     "interval": 2,
-    "format": "<span font='Font Awesome 5 Free 11'></span> {usage}%"
+    "format": "<span font='Font Awesome 6 Free 10'></span> {usage}%"
   },
 
   "memory": {
     "interval": 2,
-    "format": "<span font='Font Awesome 5 Free 11'></span> {percentage}%"
+    "format": "<span font='Font Awesome 6 Free 10'></span> {percentage}%"
   },
 
   "disk": {
-    "format": "<span font='Font Awesome 5 Free 11'></span> {percentage_used}%"
+    "format": "<span font='Font Awesome 6 Free 10'></span> {percentage_used}%"
   },
 
   "battery": {
-     "format": "<span font='Font Awesome 5 Free 11'>{icon}</span> {capacity}%",
+     "format": "<span font='Font Awesome 6 Free 10'>{icon}</span> {capacity}%",
      "format-icons": ["", "", "", "", ""],
-     "format-charging": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}%",
-     "format-full": "<span font='Font Awesome 5 Free 11'></span>",
+     "format-charging": "<span font='Font Awesome 6 Free 10'></span>  <span font='Font Awesome 6 Free 10'>{icon}</span>  {capacity}%",
+     "format-full": "<span font='Font Awesome 6 Free 10'></span>",
      "interval": 10,
      "states": {
          "warning": 50,
@@ -95,8 +82,8 @@
   },
 
   "clock": {
-    "format": " {:%I:%M %p}",
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><big>{calendar}</big></tt>",
+    "format": "{:%a %d %b, %I:%M %p}",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>",
     "timezone": "Asia/Kolkata"
   },
 
@@ -105,17 +92,17 @@
      "interval": 20,
      "format-alt": " {ipaddr}/{cidr}",
      "format-alt-click": "click",
-     "format-wifi": "<span font='Font Awesome 5 Free 10'></span> {essid} ({signalStrength}%)",
+     "format-wifi": "<span font='Font Awesome 6 Free 10'></span> {essid} ({signalStrength}%)",
      "format-ethernet": "",
      "format-disconnected": "",
      "tooltip": false
   },
   
   "pulseaudio": {
-     "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>",
-     "format-bluetooth": "<span font='Font Awesome 5 Free 11'> {icon}</span>",
-     "format-alt": "<span font='Font Awesome 5 Free 11'>{icon}</span>",
-     "format-muted": "<span font='Font Awesome 5 Free 11'></span>",
+     "format": "<span font='Font Awesome 6 Free 10'>{icon}</span>",
+     "format-bluetooth": "<span font='Font Awesome 6 Free 10'> {icon}</span>",
+     "format-alt": "<span font='Font Awesome 6 Free 10'>{icon}</span>",
+     "format-muted": "<span font='Font Awesome 6 Free 10'></span>",
      "format-icons": {
          "headphone": ["  ", "  ", "  "],
          "default": ["", "", ""]

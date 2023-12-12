@@ -1,8 +1,8 @@
 *,
 *:hover {
     border: none;
-    border-radius: 4;
-    font-family: "Geist Mono SemiBold", "Font Awesome 5 Free";
+    border-radius: 4px;
+    font-family: "Geist Mono SemiBold", "Font Awesome 6 Free";
     font-size: 14px;
     font-weight: normal;
     min-height: 0;

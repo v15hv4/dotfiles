@@ -1,0 +1,36 @@
+swaylock -u -f \
+    --screenshots \
+    --clock \
+    --indicator \
+    --indicator-radius 150 \
+    --indicator-thickness 15 \
+    --grace 0 \
+    --grace-no-mouse \
+    --grace-no-touch \
+    --ignore-empty-password \
+    --fade-in 0.0005 \
+    --effect-blur 8x5 \
+    --effect-vignette 0.5:0.5 \
+    --color 00000000 \
+    --bs-hl-color f38ba8 \
+    --key-hl-color cba6f7 \
+    --inside-color 1e1e2e \
+    --inside-clear-color 1e1e2e \
+    --inside-ver-color 1e1e2e \
+    --inside-wrong-color 1e1e2e \
+    --line-color 11111b \
+    --line-ver-color 11111b \
+    --line-clear-color 11111b \
+    --line-wrong-color 11111b \
+    --ring-color 181825 \
+    --ring-clear-color cba6f7 \
+    --ring-ver-color cba6f7 \
+    --ring-wrong-color f38ba8 \
+    --separator-color 00000000 \
+    --text-color cdd6f4 \
+    --text-clear-color cdd6f4 \
+    --text-ver-color cdd6f4 \
+    --text-wrong-color f38ba8 \
+    --font "SF Pro Display" \
+    --timestr "%I:%M %p" \
+    --datestr "%d %b %y"
