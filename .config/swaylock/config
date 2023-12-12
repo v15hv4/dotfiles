@@ -6,6 +6,7 @@ indicator-thickness=15
 grace=0
 grace-no-mouse
 grace-no-touch
+disable-caps-lock-text
 ignore-empty-password
 fade-in=0.0005
 effect-blur=8x5
@@ -27,9 +28,9 @@ ring-ver-color=888888
 ring-wrong-color=f38ba8
 separator-color=00000000
 text-color=eeeeee
-text-clear-color=eeeeee
-text-ver-color=eeeeee
-text-wrong-color=f38ba8
+text-clear-color=1e1e1e
+text-ver-color=1e1e1e
+text-wrong-color=1e1e1e
 font=SF Pro Display
 timestr=%I:%M %p
 datestr=%d %b %y
