@@ -42,7 +42,7 @@ require("packer").startup(function(use)
     requires = {
       -- LSP Support
       { "neovim/nvim-lspconfig" }, -- Required
-      {                         -- Optional
+      {                            -- Optional
         "williamboman/mason.nvim",
         run = function()
           pcall(vim.cmd, "MasonUpdate")
@@ -51,9 +51,9 @@ require("packer").startup(function(use)
       { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
       -- Autocompletion
-      { "hrsh7th/nvim-cmp" },  -- Required
+      { "hrsh7th/nvim-cmp" },     -- Required
       { "hrsh7th/cmp-nvim-lsp" }, -- Required
-      { "L3MON4D3/LuaSnip" },  -- Required
+      { "L3MON4D3/LuaSnip" },     -- Required
     },
   })
   use({
@@ -80,9 +80,9 @@ require("packer").startup(function(use)
   })
 
   -- Other useful plugins
-  use("numToStr/Comment.nvim")      -- 'gc' to comment visual regions/lines
-  use("tpope/vim-sleuth")           -- Detect tabstop and shiftwidth automatically
-  use("m4xshen/autoclose.nvim")     -- Automatically close brackets and quotes
+  use("numToStr/Comment.nvim")       -- 'gc' to comment visual regions/lines
+  use("tpope/vim-sleuth")            -- Detect tabstop and shiftwidth automatically
+  use("m4xshen/autoclose.nvim")      -- Automatically close brackets and quotes
   use("nvim-tree/nvim-web-devicons") -- Better icons
 
   if is_bootstrap then
@@ -180,6 +180,7 @@ vim.o.foldmethod = "marker"
 
 -- Transparent background
 vim.cmd([[hi Normal guibg=none]])
+vim.cmd([[hi SignColumn guibg=none]])
 vim.g.one_nvim_transparent_bg = true
 
 -- Highlight on yank
