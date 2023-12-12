@@ -14,11 +14,11 @@ echo "installing packages..."
 ## sync packages
 yay -Syu --noconfirm
 ## install required packages
-yay -S ${INSTALL_PACKAGES[@]}
+yay -S ${INSTALL_PACKAGES[@]} --noconfirm
 ## remove unnecessary packages
-yay -R ${REMOVE_PACKAGES[@]}
+yay -R ${REMOVE_PACKAGES[@]} --noconfirm
 ## install fonts
-yay -S ${FONTS[@]}
+yay -S ${FONTS[@]} --noconfirm
 
 # install zsh plugins
 echo "installing zsh plugins..."
