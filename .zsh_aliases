@@ -4,7 +4,7 @@ alias cat="bat --theme gruvbox-light"
 alias vim="nvim"
 alias df="duf"
 alias top="bashtop"
-alias moss="~/.scripts/moss.pl"
+alias moss="~/scripts/moss.pl"
 
 # short commands
 alias dc="docker-compose"
@@ -18,7 +18,7 @@ alias tunstart="sudo tunsafe start -d ~/Documents/aws.conf"
 alias tunstop="sudo tunsafe stop tun0"
 
 # custom scripts
-alias ovpn-iiit="~/.scripts/ovpn-iiit.sh"
+alias ovpn-iiit="~/scripts/ovpn-iiit.sh"
 
 # 0x0st upload
 function nup() {
