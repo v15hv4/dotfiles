@@ -2,9 +2,9 @@
 *:hover {
     border: none;
     border-radius: 4px;
-    font-family: "Geist Mono SemiBold", "Font Awesome 6 Free";
+    font-family: "SF Pro Display", "Font Awesome 6 Free";
     font-size: 14px;
-    font-weight: normal;
+    font-weight: 600;
     min-height: 0;
 }
 
@@ -36,7 +36,7 @@ tooltip {
 }
 
 #workspaces button.urgent {
-    color: #0f0f0f;
+    color: #f44336;
 }
 
 #workspaces button:hover {

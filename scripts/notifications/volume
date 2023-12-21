@@ -4,17 +4,17 @@ volume="$(pamixer --get-volume-human)"
 
 if [ "$volume" = "muted" ]; then
     notify-send -r 69 \
-        -a "Volume" \
-        "Muted" \
+        -a "Muted" \
+        " " \
         -i ~/scripts/notifications/assets/volume-mute.svg \
-        -t 888 \
+        -t 1000 \
         -u low
 else
     notify-send -r 69 \
-        -a "Volume" \
-        "Currently at $volume" \
+        -a "$volume" \
+        " " \
         -h int:value:"$volume" \
         -i ~/scripts/notifications/assets/volume.svg \
-        -t 888 \
+        -t 1000 \
         -u low
 fi

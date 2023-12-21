@@ -6,7 +6,7 @@ BACKUP_OLD=1
 
 INSTALL_PACKAGES=(google-chrome-stable kitty zsh tmux neovim zoxide exa bat duf rsync wlr-randr tofi xdg-desktop-portal-wayland xdg-desktop-portal-wlr swaylock-effects swayidle flameshot-git grim xclip wl-clipboard waybar dunst pamixer bashtop)
 REMOVE_PACKAGES=(xdg-desktop-portal-gnome xdg-desktop-portal-gtk)
-FONTS=(apple-fonts otf-geist otf-geist-mono otf-font-awesome)
+FONTS=(apple-fonts otf-geist otf-geist-mono otf-font-awesome noto-fonts-emoji)
 FILES=(.gitconfig .p10k.zsh .tmux.conf .zsh_aliases .zshrc .config/)
 
 # install packages

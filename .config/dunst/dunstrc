@@ -24,10 +24,10 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = (0, 500)
+    width = (0, 400)
 
     # The maximum height of a single notification, excluding the frame.
-    height = 250
+    height = 600
 
     # Position the notification in the top right corner
     origin = top-right
@@ -127,7 +127,7 @@
 
     ### Text ###
 
-    font = Geist Mono SemiBold 10
+    font = SF Pro 9
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -167,7 +167,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<span size='x-large' font_desc='Geist Mono 9' weight='bold' foreground='#ffffff'>%a</span>\n%s\n%b"
+    format = "<span size='x-large' font_desc='SF Pro 9' weight='semibold' foreground='#ffffff'>%a</span>\n%s\n%b"
     word_wrap = yes
 
     # Alignment of message text.

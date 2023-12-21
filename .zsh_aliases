@@ -5,6 +5,7 @@ alias vim="nvim"
 alias df="duf"
 alias top="bashtop"
 alias moss="~/scripts/moss.pl"
+alias xm5="bluetoothctl connect AC:80:0A:15:48:8B"
 
 # short commands
 alias dc="docker-compose"
