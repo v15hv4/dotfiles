@@ -10,6 +10,7 @@ VPN_NAMESERVER=10.4.20.204
 
 AUTH_FILE=$VPN_DIR/$VPN_NAME.auth
 CONFIG_FILE=$VPN_DIR/$VPN_NAME.ovpn
+USR_PATH=/usr/local/libexec/openvpn/update-systemd-resolved
 
 
 # check dependencies
@@ -18,7 +19,7 @@ if [[ ! -f /usr/bin/openvpn ]]; then
     echo "Check: https://community.openvpn.net/openvpn/wiki/OpenvpnSoftwareRepos"
     exit 1
 fi
-if [[ ! -f /usr/local/bin/update-systemd-resolved ]]; then
+if [[ ! -f $USR_PATH ]]; then
     echo "update-systemd-resolved is not installed! Installing..."
     PREVWD=$(pwd)
     cd /tmp
@@ -53,8 +54,8 @@ if [[ ! -f "$CONFIG_FILE" ]]; then
     echo "dhcp-option DNS $VPN_NAMESERVER" >> $CONFIG_FILE
     echo "dhcp-option DOMAIN-ROUTE ." >> $CONFIG_FILE
     echo "script-security 2" >> $CONFIG_FILE
-    echo "up /usr/local/bin/update-systemd-resolved" >> $CONFIG_FILE
-    echo "down /usr/local/bin/update-systemd-resolved" >> $CONFIG_FILE
+    echo "up $USR_PATH" >> $CONFIG_FILE
+    echo "down $USR_PATH" >> $CONFIG_FILE
     echo "down-pre" >> $CONFIG_FILE
 fi
 
