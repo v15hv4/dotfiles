@@ -1,0 +1,32 @@
+# cli tools
+alias ls="exa"
+alias cat="bat --theme gruvbox-light"
+alias vim="nvim"
+alias df="duf"
+alias top="bashtop"
+alias moss="~/scripts/moss.pl"
+alias xm5="bluetoothctl connect AC:80:0A:15:48:8B"
+
+# short commands
+alias dc="docker-compose"
+alias xo="xdg-open"
+alias rs="rsync -avzWP"
+alias minecraft="java -jar ~/Downloads/TLauncher-2.885.jar"
+alias latexmk="docker run --rm -it -v $(pwd):/workdir danteev/texlive latexmk"
+
+# tunsafe
+alias tunstart="sudo tunsafe start -d ~/Documents/aws.conf"
+alias tunstop="sudo tunsafe stop tun0"
+
+# custom scripts
+alias ovpn-iiit="~/scripts/ovpn-iiit.sh"
+
+# 0x0st upload
+function nup() {
+    curl -F"file=@$(realpath $1)" http://0x0.st
+}
+
+# convert all spaces to underscores (recursively) in the current directory
+function stou() {
+    find $1 -depth -name "* *" -execdir bash -c 'mv "$1" `echo $1 | sed "s/ /_/g"`' -- {} \;
+}

@@ -1,0 +1,20 @@
+#!/bin/sh
+pamixer "$@"
+volume="$(pamixer --get-volume-human)"
+
+if [ "$volume" = "muted" ]; then
+    notify-send -r 69 \
+        -a "Muted" \
+        " " \
+        -i ~/scripts/notifications/assets/volume-mute.svg \
+        -t 1000 \
+        -u low
+else
+    notify-send -r 69 \
+        -a "$volume" \
+        " " \
+        -h int:value:"$volume" \
+        -i ~/scripts/notifications/assets/volume.svg \
+        -t 1000 \
+        -u low
+fi
