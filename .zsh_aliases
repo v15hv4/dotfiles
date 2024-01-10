@@ -1,7 +1,6 @@
 # cli tools
 alias ls="exa"
 alias cat="bat --theme gruvbox-light"
-alias vim="nvim"
 alias df="duf"
 alias top="bashtop"
 alias moss="~/scripts/moss.pl"
@@ -11,7 +10,6 @@ alias xm5="bluetoothctl connect AC:80:0A:15:48:8B"
 alias dc="docker-compose"
 alias xo="xdg-open"
 alias rs="rsync -avzWP"
-alias minecraft="java -jar ~/Downloads/TLauncher-2.885.jar"
 alias latexmk="docker run --rm -it -v $(pwd):/workdir danteev/texlive latexmk"
 
 # tunsafe

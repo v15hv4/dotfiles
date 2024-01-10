@@ -4,6 +4,7 @@ $HOME/.fehbg
 
 picom -b
 polybar &
+light-locker &
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc config window_gap          12
