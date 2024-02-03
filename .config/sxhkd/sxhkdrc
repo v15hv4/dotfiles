@@ -162,7 +162,7 @@ Print
 
 # lock screen using light-locker
 {super,alt} + l
-    dm-tool lock
+	betterlockscreen -l blur
 
 # spotify
 XF86Audio{Play,Pause,Next,Prev}
