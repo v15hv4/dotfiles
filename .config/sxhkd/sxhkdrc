@@ -7,9 +7,9 @@
 	kitty
 
 # program launcher
-{super,alt} + d
-    rofi -modi drun -show drun \
-                -config ~/.config/rofi/rofidmenu.rasi
+# {super,alt} + d
+#     rofi -modi drun -show drun \
+#                 -config ~/.config/rofi/rofidmenu.rasi
 
 # make sxhkd reload its configuration files:
 {super,alt} + Escape
@@ -145,9 +145,7 @@ alt + ctrl + {Left,Down,Up,Right}
 
 # brightness
 XF86MonBrightness{Up,Down}
- 	xbacklight -{inc,dec} 10
-ctrl + shift + {Up,Down}
-	xbacklight -{inc,dec} 10
+ 	light -{A,U} 10
 
 # volume
 XF86Audio{RaiseVolume,LowerVolume}
