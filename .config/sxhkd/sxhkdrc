@@ -145,14 +145,17 @@ alt + ctrl + {Left,Down,Up,Right}
 
 # brightness
 XF86MonBrightness{Up,Down}
- 	light -{A,U} 10
+ 	light -{A,U} 5
 
 # volume
 XF86Audio{RaiseVolume,LowerVolume}
 	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
 
-XF86Audio{Mute}
+XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+XF86AudioMicMute
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # screenshots
 Print
@@ -160,7 +163,7 @@ Print
 
 # lock screen using light-locker
 {super,alt} + l
-	betterlockscreen -l blur
+	dm-tool lock
 
 # spotify
 XF86Audio{Play,Pause,Next,Prev}

@@ -78,7 +78,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions docker docker-compose kubectl)
+plugins=(git zsh-autosuggestions docker docker-compose kubectl systemd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -126,3 +126,4 @@ export PATH=$PATH:~/.yarn/bin
 
 # local binaries
 export PATH=$PATH:/home/v15hv4/.local/bin
+eval "$(register-python-argcomplete shaman)"

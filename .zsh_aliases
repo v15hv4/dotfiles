@@ -4,12 +4,30 @@ alias as="sudo apt search"
 alias ap="sudo apt purge"
 alias aar="sudo apt autoremove"
 
+# tailscale
+alias ts="sudo tailscale"
+
+# git
+alias gitpersonal="GIT_SSH_COMMAND='ssh -i ~/.ssh/personal'"
+
 # cli tools
 alias ls="exa"
-alias cat="bat --theme gruvbox-light"
+alias cat="batcat --theme gruvbox-light"
 alias df="duf"
 
 # short commands
 alias dc="docker-compose"
 alias xo="xdg-open"
 alias rs="rsync -avzWP"
+
+# initialize gitignore from https://github.com/github/gitignore
+gitignore() {
+  if [ "$1" == "list" ]; then
+    echo "Fetching available templates..."
+    curl -sSL https://github.com/github/gitignore.git | tr , '\n' | grep -o '"name":".*\.gitignore"' | sed 's/^"name":"\(.*\).gitignore"$/\1/'
+  elif [ "$1" == "init" ] && [ $# -gt 1 ]; then
+    wget https://raw.githubusercontent.com/github/gitignore/main/$2.gitignore -O .gitignore
+  else
+    echo "Usage: ignore [list] [init <template>]"
+  fi
+}
